@@ -3,572 +3,363 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORO Y MIEL - Respiro, Leo, Sueño y Agradezco</title>
+    <title>ORO Y MIEL | Bitácora de Despertar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         :root {
-            --color-primario: #28a745; /* Verde Bootstrap */
-            --color-secundario: #ffc107; /* Amarillo Bootstrap */
-            --color-fondo-claro: #1b4a2f; /* Verde muy claro */
-            --color-fondo-oscuro: #fef8e0; /* Amarillo muy claro */
-            --color-texto: #343a40;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--color-fondo-claro);
-            color: var(--color-texto);
-            line-height: 1.6;
-        }
-        .navbar {
-            background-color: var(--color-primario) !important;
-            box-shadow: 0 2px 4px rgba(0,0,0,.1);
-        }
-        .navbar-brand, .nav-link {
-            color: white !important;
-            font-weight: bold;
-        }
-        .nav-link.active {
-            background-color: rgba(255,255,255,0.2);
-            border-radius: .25rem;
-        }
-        .header-section {
-            background-color: var(--color-secundario);
-            color: var(--color-texto);
-            padding: 3rem 0;
-            text-align: center;
-            border-bottom: 5px solid var(--color-primario);
-        }
-        .header-section h1 {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-            color: var(--color-primario);
-        }
-        .card {
-            border: none;
-            border-radius: 0.75rem;
-            box-shadow: 0 0.5rem 1rem rgba(0,0,0,.08);
-            margin-bottom: 1.5rem;
-            background-color: white;
-        }
-        .card-header {
-            background-color: var(--color-primario);
-            color: white;
-            font-weight: bold;
-            border-radius: 0.75rem 0.75rem 0 0 !important;
-            padding: 1rem 1.5rem;
-            font-size: 1.25rem;
-        }
-        .card-body {
-            padding: 1.5rem;
-        }
-        .btn-primary {
-            background-color: var(--color-primario);
-            border-color: var(--color-primario);
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: #218838; /* Verde más oscuro al pasar el ratón */
-            border-color: #1e7e34;
-        }
-        .btn-secondary {
-            background-color: var(--color-secundario);
-            border-color: var(--color-secundario);
-            color: var(--color-texto);
-            transition: all 0.3s ease;
-        }
-        .btn-secondary:hover {
-            background-color: #e0a800; /* Amarillo más oscuro al pasar el ratón */
-            border-color: #d39e00;
-        }
-        .form-control:focus {
-            border-color: var(--color-primario);
-            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
-        }
-        footer {
-            background-color: var(--color-primario);
-            color: white;
-            padding: 1.5rem 0;
-            text-align: center;
-            margin-top: 3rem;
-            border-top: 5px solid var(--color-secundario);
-        }
-        .log-entry {
-            background-color: var(--color-fondo-claro);
-            border: 1px solid var(--color-primario);
-            border-radius: .5rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-        .log-entry strong {
-            color: var(--color-primario);
-        }
-        .nav-tabs .nav-link {
-            color: var(--color-texto);
-        }
-        .nav-tabs .nav-link.active {
-            color: var(--color-primario);
-            border-color: var(--color-primario) var(--color-primario) transparent var(--color-primario);
-            background-color: white;
-        }
-        /* Animación de respiración */
-        .breathing-circle {
-            width: 150px;
-            height: 150px;
-            background-color: var(--color-secundario);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 2rem auto;
-            color: var(--color-primario);
-            font-size: 1.5rem;
-            font-weight: bold;
-            box-shadow: 0 0 20px rgba(255, 193, 7, 0.6);
-            animation: breathe 8s infinite ease-in-out;
-        }
-        @keyframes breathe {
-            0% { transform: scale(1); opacity: 1; box-shadow: 0 0 20px rgba(255, 193, 7, 0.6); }
-            50% { transform: scale(1.1); opacity: 0.7; box-shadow: 0 0 40px rgba(255, 193, 7, 1); }
-            100% { transform: scale(1); opacity: 1; box-shadow: 0 0 20px rgba(255, 193, 7, 0.6); }
+            --teal-bg: #D1E1E0;      /* Fondo aguamarina claro de la imagen */
+            --teal-dark: #3E727A;    /* Texto y bordes oscuros */
+            --gold-accent: #FFC107;  /* Dorado brillante de los botones */
+            --white: #ffffff;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        .nav-tabs .nav-link.active {
-    color: var(--color-primario);
-    border-color: var(--color-primario) var(--color-primario) transparent var(--color-primario);
-    background-color: #78af20;
-}
+        body {
+            background-color: var(--teal-bg);
+            font-family: 'Quicksand', sans-serif;
+            color: var(--teal-dark);
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background: var(--white) !important;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+        }
+        .navbar-brand img { width: 40px; margin-right: 10px; }
+        .nav-link {
+            color: var(--teal-dark) !important;
+            font-weight: 600;
+            margin: 0 10px;
+            border-bottom: 3px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            border-bottom: 3px solid var(--gold-accent);
+        }
+
+        /* --- SECCIONES --- */
+        .section-container {
+            background: rgba(255, 255, 255, 0.4);
+            border: 2px solid var(--teal-dark);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+
+        /* --- CONTADOR DE VISITAS --- */
+        .counter-box {
+            text-align: center;
+            padding: 20px;
+        }
+        .counter-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--teal-dark);
+            display: block;
+        }
+
+        /* --- BOTONES --- */
+        .btn-gold {
+            background-color: var(--gold-accent);
+            color: white;
+            font-weight: 700;
+            border-radius: 8px;
+            padding: 10px 25px;
+            border: none;
+            text-transform: uppercase;
+        }
+        .btn-gold:hover { background-color: #e6af06; color: white; }
+
+        /* --- FOOTER & COFFEE --- */
+        footer {
+            background-color: var(--teal-dark);
+            color: white;
+            padding: 50px 0;
+        }
+        .btn-coffee {
+            background-color: var(--gold-accent);
+            color: #222;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* --- ESTILO DE BIBLIOTECA --- */
+        .category-badge {
+            background: var(--teal-dark);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#">ORO Y MIEL</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#">
+                <i class="fa-solid fa-leaf text-success"></i> ORO Y MIEL
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#inicio">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#lectura">Lectura</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#suenos">Sueños</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#meditacion">Meditación</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#gratitud">Gratitud</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#eventos">Eventos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#recursos">Recursos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#cursos">Cursos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#descargas">Descargas</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <header class="header-section" id="inicio">
-        <div class="container">
-            <h1>Bienvenido a ORO Y MIEL 🐝🍯</h1>
-            <p class="lead">Tu espacio para el crecimiento personal, la reflexión y el bienestar diario.</p>
-        </div>
-    </header>
+    <div class="container mt-5">
+        
+        <section id="inicio" class="section-container">
+            <div class="row align-items-center">
+                <div class="col-md-4 border-end border-dark text-center">
+                    <div class="counter-box">
+                        <p class="mb-0 text-uppercase fw-bold">Visitas Totales</p>
+                        <span id="visitCount" class="counter-number">0</span>
+                        <div class="badge bg-dark">Real-Time JS</div>
+                    </div>
+                </div>
+                <div class="col-md-8 px-4">
+                    <h2 class="mb-4">Últimas Entradas</h2>
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="p-3 bg-white rounded shadow-sm">
+                                <small class="text-muted">Hoy</small>
+                                <h6>Mi jardín en invierno</h6>
+                                <a href="#blog" class="small text-decoration-none">Leer →</a>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 bg-white rounded shadow-sm">
+                                <small class="text-muted">Ayer</small>
+                                <h6>Tintura de Romero</h6>
+                                <a href="#blog" class="small text-decoration-none">Leer →</a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <h6 class="fw-bold">Video de la Semana</h6>
+                            <div class="ratio ratio-16x9">
+                                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" class="rounded"></iframe>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="fw-bold">Última Lectura</h6>
+                            <p class="small italic">"La botánica del deseo" - Michael Pollan</p>
+                            <div class="progress" style="height: 10px;">
+                                <div class="progress-bar bg-warning" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <main class="container my-5">
+        <section id="blog" class="section-container">
+            <h2 class="mb-4 border-bottom border-dark pb-2">Bitácora Digital (Blog)</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1515514032050-42f49110d970?auto=format&fit=crop&w=500" class="card-img-top" alt="Blog">
+                        <div class="card-body">
+                            <span class="category-badge">Tinturas</span>
+                            <h5 class="card-title mt-2">Poder del saúco</h5>
+                            <p class="card-text small">Descubre cómo preparar un jarabe para fortalecer el sistema inmune...</p>
+                            <p class="text-muted extra-small">28 Ene 2026</p>
+                            <button class="btn btn-gold w-100">Ver más</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=500" class="card-img-top" alt="Blog">
+                        <div class="card-body">
+                            <span class="category-badge">El Jardín</span>
+                            <h5 class="card-title mt-2">Compostaje Vital</h5>
+                            <p class="card-text small">No tires tus desechos, crea oro negro para tus plantas.</p>
+                            <p class="text-muted extra-small">25 Ene 2026</p>
+                            <button class="btn btn-gold w-100">Ver más</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=500" class="card-img-top" alt="Blog">
+                        <div class="card-body">
+                            <span class="category-badge">Poesía</span>
+                            <h5 class="card-title mt-2">Rosas de Enero</h5>
+                            <p class="card-text small">Versos escritos a la sombra del rosal antiguo de mi abuela.</p>
+                            <p class="text-muted extra-small">20 Ene 2026</p>
+                            <button class="btn btn-gold w-100">Ver más</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <div class="row">
-            <div class="col-lg-12 mb-5">
-                <div class="card">
-                    <div class="card-header">
-                        Respiración Consciente
-                    </div>
-                    <div class="card-body text-center">
-                        <p>Tómate un momento para conectar contigo. Inhala lentamente, exhala completamente.</p>
-                        <div class="breathing-circle" id="breathingText">
-                            Inhala
-                        </div>
-                        <p class="mt-3">Sigue el ritmo del círculo. Cuando se expande, inhala. Cuando se contrae, exhala.</p>
-                        <button class="btn btn-primary" id="toggleBreathing">Iniciar/Detener Guía</button>
-                    </div>
-                </div>
+            <div class="col-md-6">
+                <section id="eventos" class="section-container">
+                    <h3>Eventos</h3>
+                    <ul class="list-group list-group-flush bg-transparent">
+                        <li class="list-group-item bg-transparent">📅 Taller Online: Jabones Artesanales (Feb 10)</li>
+                        <li class="list-group-item bg-transparent">📅 Encuentro de Poesía en el Huerto (Mar 05)</li>
+                    </ul>
+                </section>
             </div>
-
-            <div class="col-lg-12">
-                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="lectura-tab" data-bs-toggle="tab" data-bs-target="#lectura" type="button" role="tab" aria-controls="lectura" aria-selected="true">Registro de Lectura</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="suenos-tab" data-bs-toggle="tab" data-bs-target="#suenos" type="button" role="tab" aria-controls="suenos" aria-selected="false">Diario de Sueños</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="meditacion-tab" data-bs-toggle="tab" data-bs-target="#meditacion" type="button" role="tab" aria-controls="meditacion" aria-selected="false">Registro de Meditación</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="gratitud-tab" data-bs-toggle="tab" data-bs-target="#gratitud" type="button" role="tab" aria-controls="gratitud" aria-selected="false">Diario de Gratitud</button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="lectura" role="tabpanel" aria-labelledby="lectura-tab">
-                        <div class="card">
-                            <div class="card-header">
-                                Registro de Lectura 📚
-                            </div>
-                            <div class="card-body">
-                                <form id="lecturaForm">
-                                    <div class="mb-3">
-                                        <label for="tituloLibro" class="form-label">Título del Libro:</label>
-                                        <input type="text" class="form-control" id="tituloLibro" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="tiempoLectura" class="form-label">Tiempo de Lectura (minutos):</label>
-                                        <input type="number" class="form-control" id="tiempoLectura" min="1" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="ensenanzaLectura" class="form-label">Principal Enseñanza Obtenida:</label>
-                                        <textarea class="form-control" id="ensenanzaLectura" rows="3" required></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Guardar Lectura</button>
-                                </form>
-                                <hr>
-                                <h3>Mi Historial de Lecturas:</h3>
-                                <div id="lecturaLog">
-                                    </div>
-                            </div>
-                        </div>
+            <div class="col-md-6">
+                <section id="recursos" class="section-container text-center">
+                    <h3>Recursos</h3>
+                    <div class="d-flex justify-content-around mt-4">
+                        <div><i class="fa-solid fa-seedling fa-2x"></i><p>Guías</p></div>
+                        <div><i class="fa-solid fa-flask fa-2x"></i><p>Fórmulas</p></div>
+                        <div><i class="fa-solid fa-moon fa-2x"></i><p>Calendario</p></div>
                     </div>
-
-                    <div class="tab-pane fade" id="suenos" role="tabpanel" aria-labelledby="suenos-tab">
-                        <div class="card">
-                            <div class="card-header">
-                                Diario de Sueños 😴
-                            </div>
-                            <div class="card-body">
-                                <form id="suenosForm">
-                                    <div class="mb-3">
-                                        <label for="fechaSueno" class="form-label">Fecha del Sueño:</label>
-                                        <input type="date" class="form-control" id="fechaSueno" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="descripcionSueno" class="form-label">Descripción del Sueño:</label>
-                                        <textarea class="form-control" id="descripcionSueno" rows="5" required></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="sentimientoSueno" class="form-label">Sentimientos/Emociones al Despertar:</label>
-                                        <input type="text" class="form-control" id="sentimientoSueno">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Guardar Sueño</button>
-                                </form>
-                                <hr>
-                                <h3>Mis Sueños Registrados:</h3>
-                                <div id="suenosLog">
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="meditacion" role="tabpanel" aria-labelledby="meditacion-tab">
-                        <div class="card">
-                            <div class="card-header">
-                                Registro de Meditación 🧘‍♀️
-                            </div>
-                            <div class="card-body">
-                                <form id="meditacionForm">
-                                    <div class="mb-3">
-                                        <label for="duracionMeditacion" class="form-label">Duración (minutos):</label>
-                                        <input type="number" class="form-control" id="duracionMeditacion" min="1" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="tipoMeditacion" class="form-label">Tipo de Meditación (ej. Atención Plena, Bondad Amorosa):</label>
-                                        <input type="text" class="form-control" id="tipoMeditacion">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="experienciaMeditacion" class="form-label">Experiencia/Pensamientos Clave:</label>
-                                        <textarea class="form-control" id="experienciaMeditacion" rows="3"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Guardar Meditación</button>
-                                </form>
-                                <hr>
-                                <h3>Mi Historial de Meditaciones:</h3>
-                                <div id="meditacionLog">
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="gratitud" role="tabpanel" aria-labelledby="gratitud-tab">
-                        <div class="card">
-                            <div class="card-header">
-                                Diario de Gratitud 🙏
-                            </div>
-                            <div class="card-body">
-                                <form id="gratitudForm">
-                                    <div class="mb-3">
-                                        <label for="fechaGratitud" class="form-label">Fecha:</label>
-                                        <input type="date" class="form-control" id="fechaGratitud" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="agradecimiento" class="form-label">¿Por qué estás agradecido hoy? (3 cosas o más):</label>
-                                        <textarea class="form-control" id="agradecimiento" rows="5" required></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Guardar Agradecimiento</button>
-                                </form>
-                                <hr>
-                                <h3>Mis Momentos de Gratitud:</h3>
-                                <div id="gratitudLog">
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </section>
             </div>
         </div>
-    </main>
+
+        <section id="cursos" class="section-container">
+            <h2 class="mb-4">Nuestros Cursos</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex bg-white p-3 rounded shadow-sm align-items-center">
+                        <div class="flex-shrink-0"><i class="fa-solid fa-graduation-cap fa-3x text-warning"></i></div>
+                        <div class="flex-grow-1 ms-3">
+                            <h6>Herbolaria desde Cero</h6>
+                            <p class="small mb-0">Inscríbete para aprender a sanar con lo que tienes en el patio.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex bg-white p-3 rounded shadow-sm align-items-center">
+                        <div class="flex-shrink-0"><i class="fa-solid fa-pencil fa-3x text-warning"></i></div>
+                        <div class="flex-grow-1 ms-3">
+                            <h6>Escritura Creativa</h6>
+                            <p class="small mb-0">Encuentra tu voz entre las flores y la tierra.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="descargas" class="section-container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Descargas (Biblioteca)</h2>
+                <div class="w-25">
+                    <input type="text" id="searchBar" class="form-control" placeholder="Buscar libro...">
+                </div>
+            </div>
+            
+            <div id="booksList">
+                <div class="p-3 mb-2 bg-white rounded border-start border-4 border-warning d-flex justify-content-between align-items-center book-item">
+                    <span><strong>Mística y Plantas</strong> - [PDF]</span>
+                    <button class="btn btn-sm btn-dark"><i class="fa-solid fa-download"></i></button>
+                </div>
+                <div class="p-3 mb-2 bg-white rounded border-start border-4 border-warning d-flex justify-content-between align-items-center book-item">
+                    <span><strong>Recetario de Tinturas Madre</strong> - [PDF]</span>
+                    <button class="btn btn-sm btn-dark"><i class="fa-solid fa-download"></i></button>
+                </div>
+                <div class="p-3 mb-2 bg-white rounded border-start border-4 border-warning d-flex justify-content-between align-items-center book-item">
+                    <span><strong>Antología de Poemas 2024</strong> - [PDF]</span>
+                    <button class="btn btn-sm btn-dark"><i class="fa-solid fa-download"></i></button>
+                </div>
+            </div>
+        </section>
+
+    </div>
 
     <footer class="text-center">
-        <p>&copy; 2026 ORO Y MIEL. Todos los derechos reservados.</p>
+        <div class="container">
+            <h4 class="mb-4">ORO Y MIEL</h4>
+            <div class="social-links mb-4">
+                <a href="#" class="text-white mx-2"><i class="fa-brands fa-instagram fa-2x"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fa-brands fa-facebook fa-2x"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fa-brands fa-youtube fa-2x"></i></a>
+            </div>
+            
+<div class="mb-5 text-center">
+    <a href="https://buymeacoffee.com/gamersadra1" target="_blank" class="btn-coffee">
+        <i class="fa-solid fa-mug-hot"></i> Cómprame un café
+    </a>
+    <p class="mt-3 small text-white-50">¿Te gusta mi contenido sobre el jardín y mis poemas? Apóyame para seguir compartiendo el despertar.</p>
+</div>
+            
+            <hr class="opacity-25">
+            <p class="small mb-0">&copy; 2026 ORO Y MIEL - Diseñado para el alma.</p>
+        </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Funcionalidad de Pestañas Bootstrap ---
-            const triggerTabList = document.querySelectorAll('#myTab button')
-            triggerTabList.forEach(triggerEl => {
-                const tabTrigger = new bootstrap.Tab(triggerEl)
-                triggerEl.addEventListener('click', event => {
-                    event.preventDefault()
-                    tabTrigger.show()
-                })
-            })
-
-            // --- Función para obtener la fecha y hora actual en formato legible ---
-            const getFormattedDateTime = () => {
-                const now = new Date();
-                const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-                return now.toLocaleDateString('es-ES', options);
-            };
-
-            // --- Funcionalidad de Respiración Consciente ---
-            const breathingCircle = document.getElementById('breathingText');
-            const toggleBreathingBtn = document.getElementById('toggleBreathing');
-            let isBreathingActive = false;
-            let breathingInterval;
-
-            function startBreathingGuide() {
-                isBreathingActive = true;
-                breathingCircle.textContent = 'Inhala';
-                breathingCircle.style.animationPlayState = 'running';
-                breathingInterval = setInterval(() => {
-                    if (breathingCircle.textContent === 'Inhala') {
-                        breathingCircle.textContent = 'Exhala';
-                    } else {
-                        breathingCircle.textContent = 'Inhala';
-                    }
-                }, 4000); // Cambia texto cada 4 segundos (la mitad del ciclo de animación de 8s)
+        // 1. LÓGICA DEL CONTADOR DE VISITAS
+        // Nota: Para un contador real global se requiere base de datos.
+        // Este simula el contador guardando las visitas en el navegador del usuario.
+        function updateCounter() {
+            let visits = localStorage.getItem('visit_count');
+            if (visits === null) {
+                visits = 1234; // Empezamos con un número base para que no se vea vacío
+            } else {
+                visits = parseInt(visits) + 1;
             }
+            localStorage.setItem('visit_count', visits);
+            document.getElementById('visitCount').innerText = visits.toLocaleString();
+        }
 
-            function stopBreathingGuide() {
-                isBreathingActive = false;
-                clearInterval(breathingInterval);
-                breathingCircle.textContent = 'Respira'; // Texto por defecto
-                breathingCircle.style.animationPlayState = 'paused';
-            }
-
-            toggleBreathingBtn.addEventListener('click', () => {
-                if (isBreathingActive) {
-                    stopBreathingGuide();
+        // 2. BUSCADOR DE LA BIBLIOTECA
+        document.getElementById('searchBar').addEventListener('keyup', function() {
+            let value = this.value.toLowerCase();
+            let items = document.querySelectorAll('.book-item');
+            
+            items.forEach(item => {
+                if (item.innerText.toLowerCase().includes(value)) {
+                    item.style.display = "flex";
                 } else {
-                    startBreathingGuide();
+                    item.style.display = "none";
                 }
             });
-
-            // Iniciar la animación en estado pausado por defecto y texto inicial
-            breathingCircle.style.animationPlayState = 'paused';
-            breathingCircle.textContent = 'Respira';
-
-            // --- Funcionalidad de Lectura ---
-            const lecturaForm = document.getElementById('lecturaForm');
-            const lecturaLog = document.getElementById('lecturaLog');
-            let lecturas = JSON.parse(localStorage.getItem('lecturasORO_Y_MIEL')) || [];
-
-            function renderLecturas() {
-                lecturaLog.innerHTML = '';
-                if (lecturas.length === 0) {
-                    lecturaLog.innerHTML = '<p class="text-muted">Aún no hay lecturas registradas. ¡Anímate a leer!</p>';
-                    return;
-                }
-                lecturas.forEach((lectura, index) => {
-                    const div = document.createElement('div');
-                    div.classList.add('log-entry');
-                    div.innerHTML = `
-                        <p><strong>Fecha:</strong> ${lectura.fecha}</p>
-                        <p><strong>Libro:</strong> ${lectura.titulo}</p>
-                        <p><strong>Tiempo:</strong> ${lectura.tiempo} minutos</p>
-                        <p><strong>Enseñanza:</strong> ${lectura.ensenanza}</p>
-                        <button class="btn btn-sm btn-danger" onclick="deleteEntry('lecturas', ${index})">Eliminar</button>
-                    `;
-                    lecturaLog.appendChild(div);
-                });
-            }
-
-            lecturaForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const nuevaLectura = {
-                    fecha: getFormattedDateTime(),
-                    titulo: document.getElementById('tituloLibro').value,
-                    tiempo: document.getElementById('tiempoLectura').value,
-                    ensenanza: document.getElementById('ensenanzaLectura').value
-                };
-                lecturas.unshift(nuevaLectura); // Añadir al principio para ver lo más reciente
-                localStorage.setItem('lecturasORO_Y_MIEL', JSON.stringify(lecturas));
-                lecturaForm.reset();
-                renderLecturas();
-            });
-
-            // --- Funcionalidad de Sueños ---
-            const suenosForm = document.getElementById('suenosForm');
-            const suenosLog = document.getElementById('suenosLog');
-            let suenos = JSON.parse(localStorage.getItem('suenosORO_Y_MIEL')) || [];
-
-            function renderSuenos() {
-                suenosLog.innerHTML = '';
-                if (suenos.length === 0) {
-                    suenosLog.innerHTML = '<p class="text-muted">Aún no hay sueños registrados.</p>';
-                    return;
-                }
-                suenos.forEach((sueno, index) => {
-                    const div = document.createElement('div');
-                    div.classList.add('log-entry');
-                    div.innerHTML = `
-                        <p><strong>Fecha:</strong> ${sueno.fecha}</p>
-                        <p><strong>Sueño:</strong> ${sueno.descripcion}</p>
-                        <p><strong>Sentimientos:</strong> ${sueno.sentimientos || 'No especificado'}</p>
-                        <button class="btn btn-sm btn-danger" onclick="deleteEntry('suenos', ${index})">Eliminar</button>
-                    `;
-                    suenosLog.appendChild(div);
-                });
-            }
-
-            suenosForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const nuevoSueno = {
-                    fecha: document.getElementById('fechaSueno').value,
-                    descripcion: document.getElementById('descripcionSueno').value,
-                    sentimientos: document.getElementById('sentimientoSueno').value
-                };
-                suenos.unshift(nuevoSueno);
-                localStorage.setItem('suenosORO_Y_MIEL', JSON.stringify(suenos));
-                suenosForm.reset();
-                renderSuenos();
-            });
-
-            // --- Funcionalidad de Meditación ---
-            const meditacionForm = document.getElementById('meditacionForm');
-            const meditacionLog = document.getElementById('meditacionLog');
-            let meditaciones = JSON.parse(localStorage.getItem('meditacionesORO_Y_MIEL')) || [];
-
-            function renderMeditaciones() {
-                meditacionLog.innerHTML = '';
-                if (meditaciones.length === 0) {
-                    meditacionLog.innerHTML = '<p class="text-muted">Aún no hay meditaciones registradas. ¡Anímate a meditar!</p>';
-                    return;
-                }
-                meditaciones.forEach((meditacion, index) => {
-                    const div = document.createElement('div');
-                    div.classList.add('log-entry');
-                    div.innerHTML = `
-                        <p><strong>Fecha:</strong> ${meditacion.fecha}</p>
-                        <p><strong>Duración:</strong> ${meditacion.duracion} minutos</p>
-                        <p><strong>Tipo:</strong> ${meditacion.tipo || 'No especificado'}</p>
-                        <p><strong>Experiencia:</strong> ${meditacion.experiencia || 'No registrado'}</p>
-                        <button class="btn btn-sm btn-danger" onclick="deleteEntry('meditaciones', ${index})">Eliminar</button>
-                    `;
-                    meditacionLog.appendChild(div);
-                });
-            }
-
-            meditacionForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const nuevaMeditacion = {
-                    fecha: getFormattedDateTime(),
-                    duracion: document.getElementById('duracionMeditacion').value,
-                    tipo: document.getElementById('tipoMeditacion').value,
-                    experiencia: document.getElementById('experienciaMeditacion').value
-                };
-                meditaciones.unshift(nuevaMeditacion);
-                localStorage.setItem('meditacionesORO_Y_MIEL', JSON.stringify(meditaciones));
-                meditacionForm.reset();
-                renderMeditaciones();
-            });
-
-            // --- Funcionalidad de Gratitud ---
-            const gratitudForm = document.getElementById('gratitudForm');
-            const gratitudLog = document.getElementById('gratitudLog');
-            let gratitudes = JSON.parse(localStorage.getItem('gratitudesORO_Y_MIEL')) || [];
-
-            function renderGratitudes() {
-                gratitudLog.innerHTML = '';
-                if (gratitudes.length === 0) {
-                    gratitudLog.innerHTML = '<p class="text-muted">Aún no hay entradas de gratitud. ¡Empieza a agradecer!</p>';
-                    return;
-                }
-                gratitudes.forEach((gratitud, index) => {
-                    const div = document.createElement('div');
-                    div.classList.add('log-entry');
-                    div.innerHTML = `
-                        <p><strong>Fecha:</strong> ${gratitud.fecha}</p>
-                        <p>${gratitud.agradecimiento}</p>
-                        <button class="btn btn-sm btn-danger" onclick="deleteEntry('gratitudes', ${index})">Eliminar</button>
-                    `;
-                    gratitudLog.appendChild(div);
-                });
-            }
-
-            gratitudForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const nuevaGratitud = {
-                    fecha: document.getElementById('fechaGratitud').value,
-                    agradecimiento: document.getElementById('agradecimiento').value
-                };
-                gratitudes.unshift(nuevaGratitud);
-                localStorage.setItem('gratitudesORO_Y_MIEL', JSON.stringify(gratitudes));
-                gratitudForm.reset();
-                renderGratitudes();
-            });
-
-
-            // --- Función global para eliminar entradas (para los botones) ---
-            window.deleteEntry = (type, index) => {
-                if (confirm('¿Estás seguro de que quieres eliminar esta entrada?')) {
-                    if (type === 'lecturas') {
-                        lecturas.splice(index, 1);
-                        localStorage.setItem('lecturasORO_Y_MIEL', JSON.stringify(lecturas));
-                        renderLecturas();
-                    } else if (type === 'suenos') {
-                        suenos.splice(index, 1);
-                        localStorage.setItem('suenosORO_Y_MIEL', JSON.stringify(suenos));
-                        renderSuenos();
-                    } else if (type === 'meditaciones') {
-                        meditaciones.splice(index, 1);
-                        localStorage.setItem('meditacionesORO_Y_MIEL', JSON.stringify(meditaciones));
-                        renderMeditaciones();
-                    } else if (type === 'gratitudes') {
-                        gratitudes.splice(index, 1);
-                        localStorage.setItem('gratitudesORO_Y_MIEL', JSON.stringify(gratitudes));
-                        renderGratitudes();
-                    }
-                }
-            };
-
-            // --- Cargar datos al iniciar ---
-            renderLecturas();
-            renderSuenos();
-            renderMeditaciones();
-            renderGratitudes();
         });
+
+        // Ejecutar contador al cargar
+        window.onload = updateCounter;
     </script>
 </body>
 </html>
