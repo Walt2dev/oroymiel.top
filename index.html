@@ -3,21 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dracxcore | Cultura y Magia Ensenada</title>
+    <title>Oro y Miel | Cultura Ensenada</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #1a1b26;
-            --card-bg: #24283b;
-            --accent: #7aa2f7;
-            --purple: #bb9af7;
-            --text: #cfc9c2;
+            --bg: #0b0b14;           /* fondo más profundo */
+            --card-bg: #1c1c2a;       /* tarjetas ligeramente más claras */
+            --accent: #FFB347;         /* naranja miel */
+            --gold: #FFD700;           /* dorado vibrante */
+            --purple: #c792ea;          /* lila suave */
+            --text: #f0e6d2;            /* crema cálido */
             --success: #9ece6a;
+            --border: #3a3a4e;
+        }
+
+        * {
+            transition: background-color 0.2s, color 0.2s;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            background-color: var(--bg);
             color: var(--text);
             margin: 0;
             display: flex;
@@ -28,31 +34,52 @@
         /* Header */
         header {
             width: 100%;
-            background: #16161e;
+            background: #13131f;
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-sizing: border-box;
-            border-bottom: 1px solid #414868;
+            border-bottom: 2px solid var(--gold);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
         }
 
-        .logo { color: var(--purple); font-weight: bold; font-size: 1.5rem; text-decoration: none; }
-        
-        .nav-links a { color: var(--text); text-decoration: none; margin-left: 1.5rem; transition: 0.3s; }
-        .nav-links a:hover { color: var(--accent); }
+        .logo {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.8rem;
+            text-decoration: none;
+            text-shadow: 0 0 8px #ffd70080;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 1.8rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
 
         .btn-publicar {
-            background: var(--purple);
-            color: white;
+            background: var(--gold);
+            color: #0b0b14;
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 10px 22px;
+            border-radius: 40px;
             cursor: pointer;
             font-weight: bold;
             transition: 0.3s;
+            box-shadow: 0 0 10px #ffb34780;
         }
-        .btn-publicar:hover { filter: brightness(1.2); transform: scale(1.05); }
+        .btn-publicar:hover {
+            filter: brightness(1.2);
+            transform: scale(1.05);
+            background: #ffc107;
+        }
 
         /* Main Layout */
         .container {
@@ -65,25 +92,67 @@
         }
 
         /* Left Side: Events List */
-        .main-content h2 { border-left: 4px solid var(--purple); padding-left: 10px; }
+        .main-content h2 {
+            border-left: 6px solid var(--gold);
+            padding-left: 15px;
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+
         .event-card {
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 24px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
             border-left: 4px solid var(--accent);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            transition: 0.2s;
+        }
+        .event-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .saber-mas {
+            background: var(--accent);
+            color: #0b0b14;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 10px;
+        }
+        .saber-mas:hover {
+            background: var(--gold);
         }
 
         /* Right Side: Sidebar */
         .sidebar-card {
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 24px;
             padding: 1.5rem;
             margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        .sidebar-card h3 {
+            color: var(--gold);
+            border-bottom: 1px dashed var(--gold);
+            padding-bottom: 8px;
         }
 
         /* Carousel */
-        .carousel { position: relative; height: 150px; overflow: hidden; border-radius: 8px; }
+        .carousel {
+            position: relative;
+            height: 150px;
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
         .carousel-item {
             position: absolute;
             width: 100%;
@@ -93,44 +162,105 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(45deg, #1a1b26, #414868);
-            transition: 0.5s;
+            background: linear-gradient(145deg, #1e1e30, #2a2a40);
+            transition: opacity 0.8s ease;
             opacity: 0;
+            padding: 1rem;
+            box-sizing: border-box;
         }
-        .carousel-item.active { opacity: 1; }
+        .carousel-item.active {
+            opacity: 1;
+        }
+        .carousel-item h4 {
+            color: var(--gold);
+            margin: 0 0 5px;
+        }
 
-        /* Calendario Simple */
-        .calendar { width: 100%; text-align: center; }
-        .calendar table { width: 100%; margin-top: 10px; border-collapse: collapse; }
-        .calendar td { padding: 8px; font-size: 0.9rem; border: 1px solid #414868; }
-        .has-event { color: var(--accent); font-weight: bold; cursor: pointer; text-decoration: underline; }
+        /* Calendario */
+        .calendar {
+            width: 100%;
+            text-align: center;
+        }
+        .calendar table {
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+        .calendar td {
+            padding: 10px 5px;
+            font-size: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: default;
+        }
+        .has-event {
+            background: #2a2a40;
+            color: var(--gold);
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: underline wavy var(--gold);
+            transition: 0.2s;
+        }
+        .has-event:hover {
+            background: #3a3a55;
+            transform: scale(1.1);
+        }
 
-        /* Modal */
+        /* Modales */
         .modal {
             display: none;
             position: fixed;
             z-index: 1000;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
             align-items: center;
             justify-content: center;
+            backdrop-filter: blur(4px);
         }
         .modal-content {
             background: var(--card-bg);
             padding: 2rem;
-            border-radius: 12px;
+            border-radius: 32px;
             width: 90%;
             max-width: 500px;
-            border: 1px solid var(--purple);
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 30px #ffd70040;
+            color: var(--text);
         }
-        .modal-content input, .modal-content select {
+        .modal-content h3 {
+            color: var(--gold);
+            margin-top: 0;
+        }
+        .modal-content input,
+        .modal-content select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
-            background: #1a1b26;
-            border: 1px solid #414868;
+            background: #1a1a28;
+            border: 1px solid var(--border);
             color: white;
-            border-radius: 5px;
+            border-radius: 30px;
+            box-sizing: border-box;
+        }
+        .modal-content button {
+            border-radius: 40px;
+            padding: 12px;
+            font-weight: bold;
+        }
+        .cerrar-modal {
+            background: none;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            width: 100%;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 40px;
+            padding: 10px;
+        }
+        .cerrar-modal:hover {
+            background: var(--gold);
+            color: #0b0b14;
         }
 
         @media (max-width: 850px) {
@@ -141,7 +271,7 @@
 <body>
 
 <header>
-    <a href="#" class="logo">Dracxcore</a>
+    <a href="#" class="logo">Oro y Miel</a>
     <nav class="nav-links">
         <a href="#"><i class="fas fa-magic"></i> Magia</a>
         <a href="#"><i class="fas fa-palette"></i> Artes</a>
@@ -152,15 +282,7 @@
 <div class="container">
     <main class="main-content">
         <h2>Cartelera Ensenada</h2>
-        <div class="event-card">
-            <span style="color: var(--purple)">#Magia</span>
-            <h3>Clases de Ilusionismo con Moisés</h3>
-            <p><i class="fas fa-map-marker-alt"></i> Sociedad de Magos de B.C.</p>
-            <p>Aprende cartomancia y numismagia desde cero.</p>
-            <button class="btn-publicar" style="background: var(--accent)">Saber más</button>
-        </div>
-        <div id="lista-eventos">
-            </div>
+        <div id="lista-eventos"></div> <!-- Se llena con JS -->
     </main>
 
     <aside>
@@ -184,12 +306,12 @@
 
         <div class="sidebar-card">
             <h3><i class="fas fa-calendar-alt"></i> Calendario</h3>
-            <div class="calendar" id="calendar">
-                </div>
+            <div class="calendar" id="calendar"></div>
         </div>
     </aside>
 </div>
 
+<!-- Modal para publicación -->
 <div id="modal-form" class="modal">
     <div class="modal-content">
         <h3>Publicar Evento Cultural</h3>
@@ -200,31 +322,204 @@
             <input type="date" id="fecha" required>
             <input type="url" id="link" placeholder="Link (Facebook, Instagram o Web)" required>
             <button type="submit" class="btn-publicar" id="btn-enviar" style="width: 100%;">Enviar para Aprobación</button>
-            <button type="button" onclick="toggleModal('modal-form')" style="background:none; border:none; color:grey; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
+            <button type="button" class="cerrar-modal" onclick="toggleModal('modal-form')">Cancelar</button>
         </form>
     </div>
 </div>
 
+<!-- Modal para detalles de un evento (Saber más) -->
+<div id="modal-evento-detalle" class="modal">
+    <div class="modal-content" id="detalle-contenido">
+        <!-- se llena dinámicamente -->
+    </div>
+</div>
+
+<!-- Modal para eventos del día (calendario) -->
+<div id="modal-dia-eventos" class="modal">
+    <div class="modal-content" id="dia-eventos-contenido">
+        <!-- se llena dinámicamente -->
+    </div>
+</div>
+
 <script>
-    // --- LÓGICA DEL CARRUSEL ---
+    // ---------- BASE DE DATOS DE EVENTOS (estática por ahora) ----------
+    const eventos = [
+        {
+            id: 1,
+            titulo: "Clases de Ilusionismo con Moisés",
+            lugar: "Sociedad de Magos de B.C.",
+            fecha: "2025-02-25",
+            descripcion: "Aprende cartomancia, numismagia y levitación desde cero. Incluye material.",
+            categoria: "Magia",
+            link: "https://facebook.com/evento1"
+        },
+        {
+            id: 2,
+            titulo: "Noche de Cartomancia",
+            lugar: "Centro Cultural Riviera",
+            fecha: "2025-03-02",
+            descripcion: "Velada de magia de cerca con los mejores cartomagos de la región.",
+            categoria: "Magia",
+            link: "https://instagram.com/cartomancia"
+        },
+        {
+            id: 3,
+            titulo: "Festival de Jazz",
+            lugar: "Cearte",
+            fecha: "2025-02-25",
+            descripcion: "Bandas locales y invitados especiales. Entrada libre.",
+            categoria: "Música",
+            link: "https://jazzensenada.com"
+        },
+        {
+            id: 4,
+            titulo: "Trail Running 5K",
+            lugar: "Cañón de Doña Petra",
+            fecha: "2025-03-15",
+            descripcion: "Carrera por senderos con paisajes increíbles. Inscripción gratuita.",
+            categoria: "Deporte",
+            link: "https://trailensenada.org"
+        }
+    ];
+
+    // ---------- RENDERIZAR TARJETAS DE EVENTOS ----------
+    function renderEventos() {
+        const contenedor = document.getElementById('lista-eventos');
+        contenedor.innerHTML = '';
+        eventos.forEach(evento => {
+            const card = document.createElement('div');
+            card.className = 'event-card';
+            card.innerHTML = `
+                <span style="color: var(--purple);">#${evento.categoria}</span>
+                <h3>${evento.titulo}</h3>
+                <p><i class="fas fa-map-marker-alt"></i> ${evento.lugar}</p>
+                <p>${evento.descripcion.substring(0, 60)}...</p>
+                <p><i class="fas fa-calendar-day"></i> ${formatearFecha(evento.fecha)}</p>
+                <button class="saber-mas" data-id="${evento.id}">Saber más</button>
+            `;
+            contenedor.appendChild(card);
+        });
+
+        // Asignar eventos a los botones "Saber más"
+        document.querySelectorAll('.saber-mas').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(e.target.dataset.id);
+                const evento = eventos.find(ev => ev.id === id);
+                if (evento) mostrarDetalleEvento(evento);
+            });
+        });
+    }
+
+    // formatear fecha YYYY-MM-DD a DD/MM/YYYY
+    function formatearFecha(fechaStr) {
+        const [year, month, day] = fechaStr.split('-');
+        return `${day}/${month}/${year}`;
+    }
+
+    // ---------- MODAL DETALLE EVENTO ----------
+    function mostrarDetalleEvento(evento) {
+        const modal = document.getElementById('modal-evento-detalle');
+        const contenido = document.getElementById('detalle-contenido');
+        contenido.innerHTML = `
+            <h3>${evento.titulo}</h3>
+            <p><strong>Categoría:</strong> ${evento.categoria}</p>
+            <p><strong>Lugar:</strong> ${evento.lugar}</p>
+            <p><strong>Fecha:</strong> ${formatearFecha(evento.fecha)}</p>
+            <p><strong>Descripción:</strong> ${evento.descripcion}</p>
+            <p><strong>Más info:</strong> <a href="${evento.link}" target="_blank" style="color: var(--gold);">${evento.link}</a></p>
+            <button class="cerrar-modal" onclick="toggleModal('modal-evento-detalle')">Cerrar</button>
+        `;
+        modal.style.display = 'flex';
+    }
+
+    // ---------- MODAL EVENTOS POR DÍA (CALENDARIO) ----------
+    function mostrarEventosDelDia(fecha) {
+        const eventosDelDia = eventos.filter(ev => ev.fecha === fecha);
+        const modal = document.getElementById('modal-dia-eventos');
+        const contenido = document.getElementById('dia-eventos-contenido');
+        
+        if (eventosDelDia.length === 0) {
+            contenido.innerHTML = `<h3>Eventos del ${fecha}</h3><p>No hay eventos programados.</p><button class="cerrar-modal" onclick="toggleModal('modal-dia-eventos')">Cerrar</button>`;
+        } else {
+            let lista = '<ul style="list-style: none; padding:0;">';
+            eventosDelDia.forEach(ev => {
+                lista += `<li style="margin-bottom:15px; border-bottom:1px solid var(--border); padding-bottom:8px;">
+                    <strong style="color:var(--gold);">${ev.titulo}</strong><br>
+                    <i class="fas fa-map-marker-alt"></i> ${ev.lugar}<br>
+                    <button class="saber-mas" style="margin-top:5px;" data-id="${ev.id}">Ver detalle</button>
+                </li>`;
+            });
+            lista += '</ul><button class="cerrar-modal" onclick="toggleModal(\'modal-dia-eventos\')">Cerrar</button>';
+            contenido.innerHTML = `<h3>Eventos del ${formatearFecha(fecha)}</h3>${lista}`;
+
+            // A los botones generados dinámicamente también hay que asignarles el evento
+            contenido.querySelectorAll('.saber-mas').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = parseInt(e.target.dataset.id);
+                    const evento = eventos.find(ev => ev.id === id);
+                    if (evento) {
+                        toggleModal('modal-dia-eventos'); // cierra el modal del día
+                        mostrarDetalleEvento(evento);
+                    }
+                });
+            });
+        }
+        modal.style.display = 'flex';
+    }
+
+    // ---------- CALENDARIO INTERACTIVO ----------
+    function generarCalendario() {
+        const div = document.getElementById('calendar');
+        // Usamos febrero 2025 como ejemplo (28 días) para que coincida con eventos de muestra
+        let html = "<table><tr><th>L</th><th>M</th><th>M</th><th>J</th><th>V</th><th>S</th><th>D</th></tr><tr>";
+        
+        // Obtener días con eventos (para marcar)
+        const fechasEventos = eventos.map(ev => ev.fecha);
+        
+        for(let i = 1; i <= 28; i++) {
+            // Construir fecha en formato YYYY-MM-DD (asumimos febrero 2025)
+            const fechaStr = `2025-02-${i.toString().padStart(2,'0')}`;
+            const tieneEvento = fechasEventos.includes(fechaStr);
+            let className = tieneEvento ? "has-event" : "";
+            
+            html += `<td class="${className}" data-fecha="${fechaStr}">${i}</td>`;
+            if(i % 7 === 0) html += "</tr><tr>";
+        }
+        html += "</tr></table>";
+        div.innerHTML = html;
+
+        // Agregar click a los días con evento
+        document.querySelectorAll('.has-event').forEach(td => {
+            td.addEventListener('click', (e) => {
+                const fecha = e.target.dataset.fecha;
+                mostrarEventosDelDia(fecha);
+            });
+        });
+    }
+
+    // ---------- FUNCIONES EXISTENTES (MODAL, CARRUSEL, GOOGLE SHEETS) ----------
+    function toggleModal(id) {
+        const modal = document.getElementById(id);
+        if (modal.style.display === 'flex') {
+            modal.style.display = 'none';
+        } else {
+            modal.style.display = 'flex';
+        }
+    }
+
+    // Carrusel automático
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-item');
     setInterval(() => {
         slides[currentSlide].classList.remove('active');
         currentSlide = (currentSlide + 1) % slides.length;
         slides[currentSlide].classList.add('active');
-    }, 3000);
+    }, 4000);
 
-    // --- LÓGICA DEL MODAL ---
-    function toggleModal(id) {
-        const modal = document.getElementById(id);
-        modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
-    }
-
-    // --- CONEXIÓN CON GOOGLE SHEETS ---
+    // Google Sheets (placeholder)
     async function enviarHojaCalculo(e) {
         e.preventDefault();
-        const urlScript = 'TU_URL_DE_GOOGLE_APPS_SCRIPT'; // <--- PEGA TU URL AQUÍ
+        const urlScript = 'TU_URL_DE_GOOGLE_APPS_SCRIPT'; // <--- REEMPLAZA CON TU URL
         const btn = document.getElementById('btn-enviar');
         
         const datos = {
@@ -255,20 +550,19 @@
         }
     }
 
-    // --- CALENDARIO SIMPLE ---
-    function generarCalendario() {
-        const div = document.getElementById('calendar');
-        let html = "<table><tr><td>L</td><td>M</td><td>M</td><td>J</td><td>V</td><td>S</td><td>D</td></tr><tr>";
-        for(let i=1; i<=28; i++) {
-            let className = (i === 25 || i === 2) ? "has-event" : "";
-            html += `<td class="${className}">${i}</td>`;
-            if(i % 7 === 0) html += "</tr><tr>";
-        }
-        html += "</tr></table>";
-        div.innerHTML = html;
-    }
-    generarCalendario();
-</script>
+    // Inicializar todo
+    window.onload = function() {
+        renderEventos();
+        generarCalendario();
 
+        // Cerrar modales si se hace clic fuera del contenido
+        const modales = document.querySelectorAll('.modal');
+        modales.forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.style.display = 'none';
+            });
+        });
+    };
+</script>
 </body>
 </html>
