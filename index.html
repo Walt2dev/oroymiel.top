@@ -450,13 +450,12 @@
 
     <header>
         <a href="#" class="logo">
-    <img src="https://raw.githubusercontent.com/Walt2dev/oroymiel.top/main/logo_arte_bc.png" 
+            <img src="https://raw.githubusercontent.com/Walt2dev/oroymiel.top/main/logo_arte_bc.png" 
          alt="Logo Arte BC" 
          width="72px">
-</a>
+        </a>
         <nav class="nav-links">
-            <a href="#"><i class="fas fa-magic"></i> Magia</a>
-            <a href="#"><i class="fas fa-palette"></i> Artes</a>
+
             <button class="btn-publicar" onclick="toggleModal('modal-form')">+ Publicar Evento</button>
         </nav>
     </header>
@@ -572,29 +571,43 @@
         // Variable global para eventos
         let eventos = [];
 
-        // ---------- CARGAR EVENTOS DESDE GOOGLE SHEETS ----------
+// ---------- CARGAR EVENTOS DESDE GOOGLE SHEETS ----------
         async function cargarEventos() {
             const contenedor = document.getElementById('lista-eventos');
-            contenedor.innerHTML = '<p style="color: var(--gold);">Cargando cartelera mística...</p>';
+            contenedor.innerHTML = '<p style="color: var(--gold);">Invocando los datos de la colmena...</p>';
 
             try {
-                // Llamada GET al script con el parámetro que definimos en el Apps Script
-                const response = await fetch(SCRIPT_URL + '?accion=obtener');
+                // Agregamos redirect: 'follow' para manejar el código 302 de Google
+                const response = await fetch(SCRIPT_URL + '?accion=obtener', {
+                    method: 'GET',
+                    redirect: 'follow' 
+                });
+
+                if (!response.ok) throw new Error('Error en la respuesta del servidor');
+
                 const data = await response.json();
 
-                // Guardamos y procesamos fechas para asegurar formato YYYY-MM-DD
+                // Procesamos los eventos asegurando formatos de fecha y campos nuevos
                 eventos = Array.isArray(data) ? data.map(ev => {
-                    if (ev.fecha && ev.fecha.includes('T')) {
+                    // Limpieza de fecha (quitar la T de timestamp si existe)
+                    if (ev.fecha && typeof ev.fecha === 'string' && ev.fecha.includes('T')) {
                         ev.fecha = ev.fecha.split('T')[0];
                     }
-                    return ev;
+                    
+                    // Aseguramos que hora y precio tengan valores por defecto si vienen vacíos
+                    return {
+                        ...ev,
+                        hora: ev.hora || '--:--',
+                        precio: ev.precio || 'Gratis',
+                        categoria: ev.categoria || 'Cultura'
+                    };
                 }) : [];
 
                 renderEventos();
                 generarCalendario();
             } catch (error) {
-                console.error('Error al cargar eventos:', error);
-                contenedor.innerHTML = '<p style="color: #FFB347;">Error al cargar eventos. Intenta más tarde.</p>';
+                console.error('Error detallado al cargar eventos:', error);
+                contenedor.innerHTML = '<p style="color: #FFB347;">Error de conexión. Verifica que el script esté publicado como "Cualquiera".</p>';
             }
         }
 
@@ -782,4 +795,3 @@
             }
         }
     </script>
-
