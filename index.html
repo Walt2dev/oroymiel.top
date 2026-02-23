@@ -6,7 +6,7 @@
     <title>Oro y Miel | Cultura Ensenada</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* ===== TUS ESTILOS EXISTENTES (los he mantenido igual) ===== */
+        /* ===== TUS ESTILOS (los mismos que antes) ===== */
         :root {
             --bg: #0b0b14;
             --card-bg: #1c1c2a;
@@ -52,7 +52,7 @@
         }
         .btn-publicar:hover { filter: brightness(1.2); transform: scale(1.05); background: #ffc107; }
 
-        /* ===== CARRUSEL PRINCIPAL (NUEVO) ===== */
+        /* Carrusel principal */
         .carousel-principal {
             position: relative;
             width: 100%;
@@ -106,7 +106,7 @@
         .carousel-control.next { right: 10px; }
         .carousel-control:hover { background: rgba(255,215,0,0.8); color: black; }
 
-        /* ===== CONTENEDOR PRINCIPAL ===== */
+        /* Contenedor principal */
         .container {
             display: grid;
             grid-template-columns: 1fr 350px;
@@ -121,6 +121,8 @@
             font-size: 1.8rem;
             color: var(--gold);
         }
+
+        /* Tarjetas de eventos con imagen */
         .event-card {
             background: var(--card-bg);
             border-radius: 24px;
@@ -159,7 +161,7 @@
         }
         .saber-mas:hover { background: var(--gold); }
 
-        /* ===== SIDEBAR ===== */
+        /* Sidebar */
         .sidebar-card {
             background: var(--card-bg);
             border-radius: 24px;
@@ -191,7 +193,7 @@
         .has-event { background: #2a2a40; color: var(--gold); font-weight: bold; cursor: pointer; text-decoration: underline wavy var(--gold); }
         .has-event:hover { background: #3a3a55; }
 
-        /* ===== MODALES ===== */
+        /* Modales */
         .modal {
             display: none;
             position: fixed;
@@ -239,7 +241,7 @@
         }
         .cerrar-modal:hover { background: var(--gold); color: #0b0b14; }
 
-        /* ===== FORMULARIO ===== */
+        /* Formulario */
         .glass-effect { background: rgba(28, 28, 42, 0.95) !important; backdrop-filter: blur(10px); border: 2px solid var(--gold) !important; }
         .gold-gradient-text { background: linear-gradient(to right, #FFD700, #FFB347); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
         .divider-gold { height: 2px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 15px auto; width: 80%; }
@@ -303,14 +305,14 @@
     </nav>
 </header>
 
-<!-- ===== CARRUSEL PRINCIPAL (ÚLTIMOS EVENTOS) ===== -->
+<!-- Carrusel principal -->
 <div class="carousel-principal" id="carousel-principal">
     <div class="carousel-inner"></div>
     <button class="carousel-control prev" onclick="cambiarSlide(-1)">&#10094;</button>
     <button class="carousel-control next" onclick="cambiarSlide(1)">&#10095;</button>
 </div>
 
-<!-- ===== CONTENIDO PRINCIPAL (GRID + SIDEBAR) ===== -->
+<!-- Contenido principal -->
 <div class="container">
     <main class="main-content">
         <h2>Cartelera Ensenada</h2>
@@ -321,7 +323,6 @@
         <div class="sidebar-card">
             <h3><i class="fas fa-star"></i> Próximos Eventos</h3>
             <div class="carousel" id="carousel-mini">
-                <!-- Se llena con JS (puedes mantenerlo o reemplazar por algo dinámico) -->
                 <div class="carousel-item active"><h4>Festival de Jazz</h4><p>25 Feb - Cearte</p></div>
                 <div class="carousel-item"><h4>Noche de Cartomancia</h4><p>02 Mar - Centro</p></div>
                 <div class="carousel-item"><h4>Trail Running 5K</h4><p>15 Mar - Cañón</p></div>
@@ -335,7 +336,7 @@
     </aside>
 </div>
 
-<!-- ===== MODAL PARA PUBLICAR EVENTO ===== -->
+<!-- Modal para publicar evento -->
 <div id="modal-form" class="modal">
     <div class="modal-content glass-effect">
         <div class="modal-header-custom">
@@ -376,7 +377,7 @@
                 <label class="form-label-custom">Enlace (URL)</label>
                 <input type="url" id="link" class="form-control-custom" placeholder="https://..." required>
             </div>
-            <!-- NUEVO CAMPO PARA SUBIR IMAGEN -->
+            <!-- Campo para imagen -->
             <div class="col-12">
                 <label class="form-label-custom">Foto del evento (opcional)</label>
                 <input type="file" id="imagen" accept="image/*" class="form-control-custom">
@@ -391,12 +392,12 @@
     </div>
 </div>
 
-<!-- ===== MODAL DETALLE DE EVENTO ===== -->
+<!-- Modal detalle de evento -->
 <div id="modal-evento-detalle" class="modal">
     <div class="modal-content" id="detalle-contenido"></div>
 </div>
 
-<!-- ===== MODAL EVENTOS DEL DÍA ===== -->
+<!-- Modal eventos del día -->
 <div id="modal-dia-eventos" class="modal">
     <div class="modal-content" id="dia-eventos-contenido"></div>
 </div>
@@ -448,12 +449,12 @@
                     hora: ev.hora || '--:--',
                     precio: ev.precio || 'Gratis',
                     categoria: ev.categoria || 'Cultura',
-                    imagen: ev.imagen || ''  // Aseguramos que exista
+                    imagen: ev.imagen || ''
                 };
             }) : [];
             renderEventos();
             generarCalendario();
-            actualizarCarruselPrincipal();   // ← NUEVO
+            actualizarCarruselPrincipal();
         })
         .catch(error => {
             console.error('Error:', error);
@@ -485,6 +486,7 @@
                     <p><i class="fas fa-map-marker-alt"></i> ${evento.lugar}</p>
                     <p><i class="fas fa-calendar-alt"></i> ${formatearFecha(evento.fecha)} - <i class="fas fa-clock"></i> ${evento.hora}</p>
                     <p><i class="fas fa-ticket-alt"></i> <strong>Precio:</strong> ${evento.precio}</p>
+                    <p class="desc-corta">${(evento.descripcion || 'Sin descripción disponible.').substring(0, 80)}...</p>
                     <button class="saber-mas" data-id="${evento.id}">Saber más</button>
                 </div>
             `;
@@ -505,7 +507,6 @@
     // CARRUSEL PRINCIPAL (últimos 3 eventos con imagen)
     // ==============================================
     function actualizarCarruselPrincipal() {
-        // Tomar últimos 3 eventos (ordenados por fecha descendente)
         const ultimos = [...eventos]
             .sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''))
             .slice(0, 3);
@@ -529,12 +530,10 @@
             carouselInner.appendChild(div);
         });
 
-        // Reiniciar índice y mostrar primero
         slideIndex = 0;
         mostrarSlide(0);
     }
 
-    // Funciones para navegar el carrusel principal
     function cambiarSlide(n) {
         mostrarSlide(slideIndex + n);
     }
@@ -643,7 +642,7 @@
     }
 
     // ==============================================
-    // ENVÍO DEL FORMULARIO (con imagen en Base64)
+    // ENVÍO DEL FORMULARIO (con CORS y lectura de respuesta)
     // ==============================================
     async function enviarHojaCalculo(e) {
         e.preventDefault();
@@ -651,7 +650,6 @@
         const inputImagen = document.getElementById('imagen');
         let imagenBase64 = '';
 
-        // Si hay imagen seleccionada, convertirla a Base64
         if (inputImagen.files.length > 0) {
             const file = inputImagen.files[0];
             imagenBase64 = await new Promise((resolve, reject) => {
@@ -678,15 +676,23 @@
         try {
             const response = await fetch(SCRIPT_URL, {
                 method: 'POST',
-                mode: 'no-cors',   // Si no puedes leer respuesta, al menos sabemos que llegó
+                mode: 'cors',  // ← ahora usamos cors
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(datos)
             });
-            alert("¡Oro y Miel! Recibimos tu evento. Lo revisaremos pronto.");
-            toggleModal('modal-form');
-            document.getElementById('form-evento').reset();
+            const result = await response.json();
+            if (result.success) {
+                alert("¡Oro y Miel! Recibimos tu evento. Lo revisaremos pronto.");
+                toggleModal('modal-form');
+                document.getElementById('form-evento').reset();
+                // Opcional: recargar eventos para ver el nuevo (aunque estará pendiente)
+                cargarEventos();
+            } else {
+                alert("Error del servidor: " + result.error);
+            }
         } catch (err) {
             alert("Error al enviar. Revisa tu conexión.");
+            console.error(err);
         } finally {
             btn.disabled = false;
             btn.innerText = "Enviar para Aprobación";
@@ -703,7 +709,6 @@
 
     window.onload = cargarEventos;
 
-    // Cerrar modal al hacer clic fuera
     window.onclick = function(event) {
         if (event.target.className === 'modal') {
             event.target.style.display = "none";
