@@ -450,9 +450,8 @@
 
     <header>
         <a href="#" class="logo">
-            <img src="https://raw.githubusercontent.com/Walt2dev/oroymiel.top/main/logo_arte_bc.png" 
-         alt="Logo Arte BC" 
-         width="72px">
+            <img src="https://raw.githubusercontent.com/Walt2dev/oroymiel.top/main/logo_arte_bc.png" alt="Logo Arte BC"
+                width="190px">
         </a>
         <nav class="nav-links">
 
@@ -566,51 +565,56 @@
 
     <script>
 
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzhYQAmKoPpgn3FJvIsmN9Ej_JtLcTG5QWB_4MkXrc8ItBd9vTo760s3hu8NJ4m-4afFw/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3t77ghQHLVPCWfZ1NrSdkfQ_bPFZ8TXBaH-4SMDbsFflzB8M0x68shdBd8gAw9UbWBw/exec';
 
         // Variable global para eventos
         let eventos = [];
 
-// ---------- CARGAR EVENTOS DESDE GOOGLE SHEETS ----------
-        async function cargarEventos() {
+        // Función para cargar eventos usando JSONP
+        function cargarEventos() {
             const contenedor = document.getElementById('lista-eventos');
             contenedor.innerHTML = '<p style="color: var(--gold);">Invocando los datos de la colmena...</p>';
 
-            try {
-                // Agregamos redirect: 'follow' para manejar el código 302 de Google
-                const response = await fetch(SCRIPT_URL + '?accion=obtener', {
-                    method: 'GET',
-                    redirect: 'follow' 
+            return new Promise((resolve, reject) => {
+                const callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+                window[callbackName] = function (data) {
+                    // Limpiar
+                    delete window[callbackName];
+                    document.body.removeChild(script);
+                    resolve(data);
+                };
+
+                const script = document.createElement('script');
+                script.src = SCRIPT_URL + '?accion=obtener&callback=' + callbackName;
+                script.onerror = () => {
+                    delete window[callbackName];
+                    document.body.removeChild(script);
+                    reject(new Error('Error al cargar los eventos'));
+                    contenedor.innerHTML = '<p style="color: #FFB347;">Error de conexión.</p>';
+                };
+                document.body.appendChild(script);
+            })
+                .then(data => {
+                    // Procesar eventos igual que antes
+                    eventos = Array.isArray(data) ? data.map(ev => {
+                        if (ev.fecha && typeof ev.fecha === 'string' && ev.fecha.includes('T')) {
+                            ev.fecha = ev.fecha.split('T')[0];
+                        }
+                        return {
+                            ...ev,
+                            hora: ev.hora || '--:--',
+                            precio: ev.precio || 'Gratis',
+                            categoria: ev.categoria || 'Cultura'
+                        };
+                    }) : [];
+                    renderEventos();
+                    generarCalendario();
+                })
+                .catch(error => {
+                    console.error('Error al cargar eventos:', error);
+                    contenedor.innerHTML = '<p style="color: #FFB347;">No se pudieron cargar los eventos. Verifica la conexión.</p>';
                 });
-
-                if (!response.ok) throw new Error('Error en la respuesta del servidor');
-
-                const data = await response.json();
-
-                // Procesamos los eventos asegurando formatos de fecha y campos nuevos
-                eventos = Array.isArray(data) ? data.map(ev => {
-                    // Limpieza de fecha (quitar la T de timestamp si existe)
-                    if (ev.fecha && typeof ev.fecha === 'string' && ev.fecha.includes('T')) {
-                        ev.fecha = ev.fecha.split('T')[0];
-                    }
-                    
-                    // Aseguramos que hora y precio tengan valores por defecto si vienen vacíos
-                    return {
-                        ...ev,
-                        hora: ev.hora || '--:--',
-                        precio: ev.precio || 'Gratis',
-                        categoria: ev.categoria || 'Cultura'
-                    };
-                }) : [];
-
-                renderEventos();
-                generarCalendario();
-            } catch (error) {
-                console.error('Error detallado al cargar eventos:', error);
-                contenedor.innerHTML = '<p style="color: #FFB347;">Error de conexión. Verifica que el script esté publicado como "Cualquiera".</p>';
-            }
         }
-
         // ---------- RENDERIZAR TARJETAS DE EVENTOS ----------
         function renderEventos() {
             const contenedor = document.getElementById('lista-eventos');
@@ -755,14 +759,14 @@
         async function enviarHojaCalculo(e) {
             e.preventDefault();
             const btn = document.getElementById('btn-enviar');
-    const datos = {
-        titulo: document.getElementById('titulo').value,
-        lugar: document.getElementById('lugar').value,
-        fecha: document.getElementById('fecha').value,
-        link: document.getElementById('link').value,
-        hora: document.getElementById('hora').value,    
-        precio: document.getElementById('precio').value 
-    };
+            const datos = {
+                titulo: document.getElementById('titulo').value,
+                lugar: document.getElementById('lugar').value,
+                fecha: document.getElementById('fecha').value,
+                link: document.getElementById('link').value,
+                hora: document.getElementById('hora').value,
+                precio: document.getElementById('precio').value
+            };
 
             btn.disabled = true;
             btn.innerText = "Enviando...";
