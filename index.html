@@ -3,363 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORO Y MIEL | Bitácora de Despertar</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <title>Dracxcore | Cultura y Magia Ensenada</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --teal-bg: #D1E1E0;      /* Fondo aguamarina claro de la imagen */
-            --teal-dark: #3E727A;    /* Texto y bordes oscuros */
-            --gold-accent: #FFC107;  /* Dorado brillante de los botones */
-            --white: #ffffff;
-            --shadow: 0 4px 15px rgba(0,0,0,0.05);
+            --bg-color: #1a1b26;
+            --card-bg: #24283b;
+            --accent: #7aa2f7;
+            --purple: #bb9af7;
+            --text: #cfc9c2;
+            --success: #9ece6a;
         }
 
         body {
-            background-color: var(--teal-bg);
-            font-family: 'Quicksand', sans-serif;
-            color: var(--teal-dark);
-            scroll-behavior: smooth;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        h1, h2, h3, .navbar-brand {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* Header */
+        header {
+            width: 100%;
+            background: #16161e;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            border-bottom: 1px solid #414868;
         }
 
-        /* --- NAVBAR --- */
-        .navbar {
-            background: var(--white) !important;
-            padding: 1rem 0;
-            box-shadow: var(--shadow);
-        }
-        .navbar-brand img { width: 40px; margin-right: 10px; }
-        .nav-link {
-            color: var(--teal-dark) !important;
-            font-weight: 600;
-            margin: 0 10px;
-            border-bottom: 3px solid transparent;
-        }
-        .nav-link:hover, .nav-link.active {
-            border-bottom: 3px solid var(--gold-accent);
-        }
+        .logo { color: var(--purple); font-weight: bold; font-size: 1.5rem; text-decoration: none; }
+        
+        .nav-links a { color: var(--text); text-decoration: none; margin-left: 1.5rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
 
-        /* --- SECCIONES --- */
-        .section-container {
-            background: rgba(255, 255, 255, 0.4);
-            border: 2px solid var(--teal-dark);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: var(--shadow);
-        }
-
-        .card {
+        .btn-publicar {
+            background: var(--purple);
+            color: white;
             border: none;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
             transition: 0.3s;
         }
-        .card:hover { transform: translateY(-5px); }
+        .btn-publicar:hover { filter: brightness(1.2); transform: scale(1.05); }
 
-        /* --- CONTADOR DE VISITAS --- */
-        .counter-box {
-            text-align: center;
-            padding: 20px;
-        }
-        .counter-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--teal-dark);
-            display: block;
+        /* Main Layout */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+            max-width: 1200px;
+            width: 95%;
+            margin-top: 2rem;
         }
 
-        /* --- BOTONES --- */
-        .btn-gold {
-            background-color: var(--gold-accent);
-            color: white;
-            font-weight: 700;
-            border-radius: 8px;
-            padding: 10px 25px;
-            border: none;
-            text-transform: uppercase;
+        /* Left Side: Events List */
+        .main-content h2 { border-left: 4px solid var(--purple); padding-left: 10px; }
+        .event-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent);
         }
-        .btn-gold:hover { background-color: #e6af06; color: white; }
 
-        /* --- FOOTER & COFFEE --- */
-        footer {
-            background-color: var(--teal-dark);
-            color: white;
-            padding: 50px 0;
+        /* Right Side: Sidebar */
+        .sidebar-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
         }
-        .btn-coffee {
-            background-color: var(--gold-accent);
-            color: #222;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
+
+        /* Carousel */
+        .carousel { position: relative; height: 150px; overflow: hidden; border-radius: 8px; }
+        .carousel-item {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 10px;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            background: linear-gradient(45deg, #1a1b26, #414868);
+            transition: 0.5s;
+            opacity: 0;
+        }
+        .carousel-item.active { opacity: 1; }
+
+        /* Calendario Simple */
+        .calendar { width: 100%; text-align: center; }
+        .calendar table { width: 100%; margin-top: 10px; border-collapse: collapse; }
+        .calendar td { padding: 8px; font-size: 0.9rem; border: 1px solid #414868; }
+        .has-event { color: var(--accent); font-weight: bold; cursor: pointer; text-decoration: underline; }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid var(--purple);
+        }
+        .modal-content input, .modal-content select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: #1a1b26;
+            border: 1px solid #414868;
+            color: white;
+            border-radius: 5px;
         }
 
-        /* --- ESTILO DE BIBLIOTECA --- */
-        .category-badge {
-            background: var(--teal-dark);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+        @media (max-width: 850px) {
+            .container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="fa-solid fa-leaf text-success"></i> ORO Y MIEL
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#eventos">Eventos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#recursos">Recursos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#cursos">Cursos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#descargas">Descargas</a></li>
-                </ul>
-            </div>
-        </div>
+<header>
+    <a href="#" class="logo">Dracxcore</a>
+    <nav class="nav-links">
+        <a href="#"><i class="fas fa-magic"></i> Magia</a>
+        <a href="#"><i class="fas fa-palette"></i> Artes</a>
+        <button class="btn-publicar" onclick="toggleModal('modal-form')">+ Publicar Evento</button>
     </nav>
+</header>
 
-    <div class="container mt-5">
-        
-        <section id="inicio" class="section-container">
-            <div class="row align-items-center">
-                <div class="col-md-4 border-end border-dark text-center">
-                    <div class="counter-box">
-                        <p class="mb-0 text-uppercase fw-bold">Visitas Totales</p>
-                        <span id="visitCount" class="counter-number">0</span>
-                        <div class="badge bg-dark">Real-Time JS</div>
-                    </div>
-                </div>
-                <div class="col-md-8 px-4">
-                    <h2 class="mb-4">Últimas Entradas</h2>
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <div class="p-3 bg-white rounded shadow-sm">
-                                <small class="text-muted">Hoy</small>
-                                <h6>Mi jardín en invierno</h6>
-                                <a href="#blog" class="small text-decoration-none">Leer →</a>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="p-3 bg-white rounded shadow-sm">
-                                <small class="text-muted">Ayer</small>
-                                <h6>Tintura de Romero</h6>
-                                <a href="#blog" class="small text-decoration-none">Leer →</a>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <h6 class="fw-bold">Video de la Semana</h6>
-                            <div class="ratio ratio-16x9">
-                                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" class="rounded"></iframe>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <h6 class="fw-bold">Última Lectura</h6>
-                            <p class="small italic">"La botánica del deseo" - Michael Pollan</p>
-                            <div class="progress" style="height: 10px;">
-                                <div class="progress-bar bg-warning" style="width: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="container">
+    <main class="main-content">
+        <h2>Cartelera Ensenada</h2>
+        <div class="event-card">
+            <span style="color: var(--purple)">#Magia</span>
+            <h3>Clases de Ilusionismo con Moisés</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Sociedad de Magos de B.C.</p>
+            <p>Aprende cartomancia y numismagia desde cero.</p>
+            <button class="btn-publicar" style="background: var(--accent)">Saber más</button>
+        </div>
+        <div id="lista-eventos">
             </div>
-        </section>
+    </main>
 
-        <section id="blog" class="section-container">
-            <h2 class="mb-4 border-bottom border-dark pb-2">Bitácora Digital (Blog)</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <img src="https://images.unsplash.com/photo-1515514032050-42f49110d970?auto=format&fit=crop&w=500" class="card-img-top" alt="Blog">
-                        <div class="card-body">
-                            <span class="category-badge">Tinturas</span>
-                            <h5 class="card-title mt-2">Poder del saúco</h5>
-                            <p class="card-text small">Descubre cómo preparar un jarabe para fortalecer el sistema inmune...</p>
-                            <p class="text-muted extra-small">28 Ene 2026</p>
-                            <button class="btn btn-gold w-100">Ver más</button>
-                        </div>
-                    </div>
+    <aside>
+        <div class="sidebar-card">
+            <h3><i class="fas fa-star"></i> Próximos Eventos</h3>
+            <div class="carousel" id="carousel">
+                <div class="carousel-item active">
+                    <h4>Festival de Jazz</h4>
+                    <p>25 de Feb - Cearte</p>
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=500" class="card-img-top" alt="Blog">
-                        <div class="card-body">
-                            <span class="category-badge">El Jardín</span>
-                            <h5 class="card-title mt-2">Compostaje Vital</h5>
-                            <p class="card-text small">No tires tus desechos, crea oro negro para tus plantas.</p>
-                            <p class="text-muted extra-small">25 Ene 2026</p>
-                            <button class="btn btn-gold w-100">Ver más</button>
-                        </div>
-                    </div>
+                <div class="carousel-item">
+                    <h4>Noche de Cartomancia</h4>
+                    <p>02 de Mar - Centro</p>
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=500" class="card-img-top" alt="Blog">
-                        <div class="card-body">
-                            <span class="category-badge">Poesía</span>
-                            <h5 class="card-title mt-2">Rosas de Enero</h5>
-                            <p class="card-text small">Versos escritos a la sombra del rosal antiguo de mi abuela.</p>
-                            <p class="text-muted extra-small">20 Ene 2026</p>
-                            <button class="btn btn-gold w-100">Ver más</button>
-                        </div>
-                    </div>
+                <div class="carousel-item">
+                    <h4>Trail Running 5K</h4>
+                    <p>15 de Mar - Cañón</p>
                 </div>
-            </div>
-        </section>
-
-        <div class="row">
-            <div class="col-md-6">
-                <section id="eventos" class="section-container">
-                    <h3>Eventos</h3>
-                    <ul class="list-group list-group-flush bg-transparent">
-                        <li class="list-group-item bg-transparent">📅 Taller Online: Jabones Artesanales (Feb 10)</li>
-                        <li class="list-group-item bg-transparent">📅 Encuentro de Poesía en el Huerto (Mar 05)</li>
-                    </ul>
-                </section>
-            </div>
-            <div class="col-md-6">
-                <section id="recursos" class="section-container text-center">
-                    <h3>Recursos</h3>
-                    <div class="d-flex justify-content-around mt-4">
-                        <div><i class="fa-solid fa-seedling fa-2x"></i><p>Guías</p></div>
-                        <div><i class="fa-solid fa-flask fa-2x"></i><p>Fórmulas</p></div>
-                        <div><i class="fa-solid fa-moon fa-2x"></i><p>Calendario</p></div>
-                    </div>
-                </section>
             </div>
         </div>
 
-        <section id="cursos" class="section-container">
-            <h2 class="mb-4">Nuestros Cursos</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="d-flex bg-white p-3 rounded shadow-sm align-items-center">
-                        <div class="flex-shrink-0"><i class="fa-solid fa-graduation-cap fa-3x text-warning"></i></div>
-                        <div class="flex-grow-1 ms-3">
-                            <h6>Herbolaria desde Cero</h6>
-                            <p class="small mb-0">Inscríbete para aprender a sanar con lo que tienes en el patio.</p>
-                        </div>
-                    </div>
+        <div class="sidebar-card">
+            <h3><i class="fas fa-calendar-alt"></i> Calendario</h3>
+            <div class="calendar" id="calendar">
                 </div>
-                <div class="col-md-6">
-                    <div class="d-flex bg-white p-3 rounded shadow-sm align-items-center">
-                        <div class="flex-shrink-0"><i class="fa-solid fa-pencil fa-3x text-warning"></i></div>
-                        <div class="flex-grow-1 ms-3">
-                            <h6>Escritura Creativa</h6>
-                            <p class="small mb-0">Encuentra tu voz entre las flores y la tierra.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="descargas" class="section-container">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2>Descargas (Biblioteca)</h2>
-                <div class="w-25">
-                    <input type="text" id="searchBar" class="form-control" placeholder="Buscar libro...">
-                </div>
-            </div>
-            
-            <div id="booksList">
-                <div class="p-3 mb-2 bg-white rounded border-start border-4 border-warning d-flex justify-content-between align-items-center book-item">
-                    <span><strong>Mística y Plantas</strong> - [PDF]</span>
-                    <button class="btn btn-sm btn-dark"><i class="fa-solid fa-download"></i></button>
-                </div>
-                <div class="p-3 mb-2 bg-white rounded border-start border-4 border-warning d-flex justify-content-between align-items-center book-item">
-                    <span><strong>Recetario de Tinturas Madre</strong> - [PDF]</span>
-                    <button class="btn btn-sm btn-dark"><i class="fa-solid fa-download"></i></button>
-                </div>
-                <div class="p-3 mb-2 bg-white rounded border-start border-4 border-warning d-flex justify-content-between align-items-center book-item">
-                    <span><strong>Antología de Poemas 2024</strong> - [PDF]</span>
-                    <button class="btn btn-sm btn-dark"><i class="fa-solid fa-download"></i></button>
-                </div>
-            </div>
-        </section>
-
-    </div>
-
-    <footer class="text-center">
-        <div class="container">
-            <h4 class="mb-4">ORO Y MIEL</h4>
-            <div class="social-links mb-4">
-                <a href="#" class="text-white mx-2"><i class="fa-brands fa-instagram fa-2x"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fa-brands fa-facebook fa-2x"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fa-brands fa-youtube fa-2x"></i></a>
-            </div>
-            
-<div class="mb-5 text-center">
-    <a href="https://buymeacoffee.com/gamersadra1" target="_blank" class="btn-coffee">
-        <i class="fa-solid fa-mug-hot"></i> Cómprame un café
-    </a>
-    <p class="mt-3 small text-white-50">¿Te gusta mi contenido sobre el jardín y mis poemas? Apóyame para seguir compartiendo el despertar.</p>
+        </div>
+    </aside>
 </div>
-            
-            <hr class="opacity-25">
-            <p class="small mb-0">&copy; 2026 ORO Y MIEL - Diseñado para el alma.</p>
-        </div>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // 1. LÓGICA DEL CONTADOR DE VISITAS
-        // Nota: Para un contador real global se requiere base de datos.
-        // Este simula el contador guardando las visitas en el navegador del usuario.
-        function updateCounter() {
-            let visits = localStorage.getItem('visit_count');
-            if (visits === null) {
-                visits = 1234; // Empezamos con un número base para que no se vea vacío
-            } else {
-                visits = parseInt(visits) + 1;
-            }
-            localStorage.setItem('visit_count', visits);
-            document.getElementById('visitCount').innerText = visits.toLocaleString();
-        }
+<div id="modal-form" class="modal">
+    <div class="modal-content">
+        <h3>Publicar Evento Cultural</h3>
+        <p>Los eventos se revisan antes de publicarse. Oro y Miel.</p>
+        <form id="form-evento" onsubmit="enviarHojaCalculo(event)">
+            <input type="text" id="titulo" placeholder="Nombre del Evento" required>
+            <input type="text" id="lugar" placeholder="Lugar (ej. Cearte, Rivieras...)" required>
+            <input type="date" id="fecha" required>
+            <input type="url" id="link" placeholder="Link (Facebook, Instagram o Web)" required>
+            <button type="submit" class="btn-publicar" id="btn-enviar" style="width: 100%;">Enviar para Aprobación</button>
+            <button type="button" onclick="toggleModal('modal-form')" style="background:none; border:none; color:grey; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
+        </form>
+    </div>
+</div>
 
-        // 2. BUSCADOR DE LA BIBLIOTECA
-        document.getElementById('searchBar').addEventListener('keyup', function() {
-            let value = this.value.toLowerCase();
-            let items = document.querySelectorAll('.book-item');
-            
-            items.forEach(item => {
-                if (item.innerText.toLowerCase().includes(value)) {
-                    item.style.display = "flex";
-                } else {
-                    item.style.display = "none";
-                }
+<script>
+    // --- LÓGICA DEL CARRUSEL ---
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-item');
+    setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }, 3000);
+
+    // --- LÓGICA DEL MODAL ---
+    function toggleModal(id) {
+        const modal = document.getElementById(id);
+        modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    // --- CONEXIÓN CON GOOGLE SHEETS ---
+    async function enviarHojaCalculo(e) {
+        e.preventDefault();
+        const urlScript = 'TU_URL_DE_GOOGLE_APPS_SCRIPT'; // <--- PEGA TU URL AQUÍ
+        const btn = document.getElementById('btn-enviar');
+        
+        const datos = {
+            titulo: document.getElementById('titulo').value,
+            lugar: document.getElementById('lugar').value,
+            fecha: document.getElementById('fecha').value,
+            link: document.getElementById('link').value
+        };
+
+        btn.disabled = true;
+        btn.innerText = "Procesando...";
+
+        try {
+            await fetch(urlScript, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(datos)
             });
-        });
+            alert("¡Recibido! Tu evento está en la lista de revisión. Gracias por difundir el arte en Ensenada.");
+            toggleModal('modal-form');
+            document.getElementById('form-evento').reset();
+        } catch (err) {
+            alert("Error al conectar. Verifica la URL de tu script.");
+        } finally {
+            btn.disabled = false;
+            btn.innerText = "Enviar para Aprobación";
+        }
+    }
 
-        // Ejecutar contador al cargar
-        window.onload = updateCounter;
-    </script>
+    // --- CALENDARIO SIMPLE ---
+    function generarCalendario() {
+        const div = document.getElementById('calendar');
+        let html = "<table><tr><td>L</td><td>M</td><td>M</td><td>J</td><td>V</td><td>S</td><td>D</td></tr><tr>";
+        for(let i=1; i<=28; i++) {
+            let className = (i === 25 || i === 2) ? "has-event" : "";
+            html += `<td class="${className}">${i}</td>`;
+            if(i % 7 === 0) html += "</tr><tr>";
+        }
+        html += "</tr></table>";
+        div.innerHTML = html;
+    }
+    generarCalendario();
+</script>
+
 </body>
 </html>
