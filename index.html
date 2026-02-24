@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oro y Miel | Cultura Ensenada</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* ===== TUS ESTILOS (los mismos de antes, pero incluidos aquí por completitud) ===== */
         :root {
             --bg: #0b0b14;
             --card-bg: #1c1c2a;
@@ -16,7 +16,12 @@
             --text: #f0e6d2;
             --border: #3a3a4e;
         }
-        * { transition: background-color 0.2s, color 0.2s; box-sizing: border-box; }
+
+        * {
+            transition: background-color 0.2s, color 0.2s;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
             background-color: var(--bg);
@@ -26,6 +31,7 @@
             flex-direction: column;
             align-items: center;
         }
+
         header {
             width: 100%;
             background: #13131f;
@@ -36,9 +42,27 @@
             border-bottom: 2px solid var(--gold);
             box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
         }
-        .logo { color: var(--gold); font-weight: bold; font-size: 1.8rem; text-decoration: none; text-shadow: 0 0 8px #ffd70080; }
-        .nav-links a { color: var(--text); text-decoration: none; margin-left: 1.8rem; font-weight: 500; transition: 0.3s; }
-        .nav-links a:hover { color: var(--gold); }
+
+        .logo {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.8rem;
+            text-decoration: none;
+            text-shadow: 0 0 8px #ffd70080;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 1.8rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
         .btn-publicar {
             background: var(--gold);
             color: #0b0b14;
@@ -50,63 +74,13 @@
             transition: 0.3s;
             box-shadow: 0 0 10px #ffb34780;
         }
-        .btn-publicar:hover { filter: brightness(1.2); transform: scale(1.05); background: #ffc107; }
 
-        /* ===== CARRUSEL PRINCIPAL ===== */
-        .carousel-principal {
-            position: relative;
-            width: 100%;
-            max-width: 1200px;
-            margin: 20px auto;
-            height: 350px;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(255,215,0,0.3);
+        .btn-publicar:hover {
+            filter: brightness(1.2);
+            transform: scale(1.05);
+            background: #ffc107;
         }
-        .carousel-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-        .carousel-item-principal {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1s ease;
-            display: flex;
-            align-items: flex-end;
-            padding: 30px;
-            color: white;
-            text-shadow: 2px 2px 5px black;
-        }
-        .carousel-item-principal.active { opacity: 1; }
-        .carousel-caption {
-            background: rgba(0,0,0,0.6);
-            padding: 15px 25px;
-            border-radius: 40px;
-            border-left: 5px solid var(--gold);
-        }
-        .carousel-control {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: var(--gold);
-            border: none;
-            font-size: 2rem;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 50%;
-            z-index: 10;
-        }
-        .carousel-control.prev { left: 10px; }
-        .carousel-control.next { right: 10px; }
-        .carousel-control:hover { background: rgba(255,215,0,0.8); color: black; }
 
-        /* ===== CONTENEDOR PRINCIPAL ===== */
         .container {
             display: grid;
             grid-template-columns: 1fr 350px;
@@ -115,12 +89,14 @@
             width: 95%;
             margin-top: 2rem;
         }
+
         .main-content h2 {
             border-left: 6px solid var(--gold);
             padding-left: 15px;
             font-size: 1.8rem;
             color: var(--gold);
         }
+
         .event-card {
             background: var(--card-bg);
             border-radius: 24px;
@@ -132,7 +108,12 @@
             gap: 1.5rem;
             align-items: center;
         }
-        .event-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+
+        .event-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+        }
+
         .event-image {
             width: 120px;
             height: 120px;
@@ -142,9 +123,31 @@
             box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
             flex-shrink: 0;
         }
-        .event-info { flex: 1; }
-        .event-info h3 { margin: 0 0 8px 0; color: var(--gold); font-size: 1.4rem; }
-        .event-info p { margin: 5px 0; display: flex; align-items: center; gap: 6px; }
+
+        .event-info {
+            flex: 1;
+        }
+
+        .event-info h3 {
+            margin: 0 0 8px 0;
+            color: var(--gold);
+            font-size: 1.4rem;
+        }
+
+        .event-info .categoria {
+            color: var(--purple);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-info p {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
         .saber-mas {
             background: var(--accent);
             color: #0b0b14;
@@ -156,9 +159,11 @@
             transition: 0.2s;
             margin-top: 10px;
         }
-        .saber-mas:hover { background: var(--gold); }
 
-        /* ===== SIDEBAR ===== */
+        .saber-mas:hover {
+            background: var(--gold);
+        }
+
         .sidebar-card {
             background: var(--card-bg);
             border-radius: 24px;
@@ -167,8 +172,21 @@
             border: 1px solid var(--border);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
         }
-        .sidebar-card h3 { color: var(--gold); border-bottom: 1px dashed var(--gold); padding-bottom: 8px; }
-        .carousel { position: relative; height: 150px; overflow: hidden; border-radius: 16px; border: 1px solid var(--border); }
+
+        .sidebar-card h3 {
+            color: var(--gold);
+            border-bottom: 1px dashed var(--gold);
+            padding-bottom: 8px;
+        }
+
+        .carousel {
+            position: relative;
+            height: 150px;
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
         .carousel-item {
             position: absolute;
             width: 100%;
@@ -183,14 +201,42 @@
             opacity: 0;
             padding: 1rem;
         }
-        .carousel-item.active { opacity: 1; }
-        .carousel-item h4 { color: var(--gold); margin: 0 0 5px; }
-        .calendar table { width: 100%; margin-top: 10px; border-collapse: collapse; }
-        .calendar td { padding: 10px 5px; border: 1px solid var(--border); border-radius: 8px; text-align: center; cursor: default; }
-        .has-event { background: #2a2a40; color: var(--gold); font-weight: bold; cursor: pointer; text-decoration: underline wavy var(--gold); }
-        .has-event:hover { background: #3a3a55; }
 
-        /* ===== MODALES ===== */
+        .carousel-item.active {
+            opacity: 1;
+        }
+
+        .carousel-item h4 {
+            color: var(--gold);
+            margin: 0 0 5px;
+        }
+
+        .calendar table {
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+
+        .calendar td {
+            padding: 10px 5px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-align: center;
+            cursor: default;
+        }
+
+        .has-event {
+            background: #2a2a40;
+            color: var(--gold);
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: underline wavy var(--gold);
+        }
+
+        .has-event:hover {
+            background: #3a3a55;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -204,6 +250,7 @@
             justify-content: center;
             backdrop-filter: blur(4px);
         }
+
         .modal-content {
             background: var(--card-bg);
             padding: 2rem;
@@ -216,7 +263,12 @@
             max-height: 80vh;
             overflow-y: auto;
         }
-        .modal-content h3 { color: var(--gold); margin-top: 0; }
+
+        .modal-content h3 {
+            color: var(--gold);
+            margin-top: 0;
+        }
+
         .modal-content img.modal-imagen {
             width: 100%;
             max-height: 250px;
@@ -225,6 +277,7 @@
             margin-bottom: 15px;
             border: 2px solid var(--gold);
         }
+
         .cerrar-modal {
             background: none;
             border: 1px solid var(--gold);
@@ -236,14 +289,73 @@
             padding: 12px;
             font-weight: bold;
         }
-        .cerrar-modal:hover { background: var(--gold); color: #0b0b14; }
 
-        /* ===== FORMULARIO ===== */
-        .glass-effect { background: rgba(28, 28, 42, 0.95) !important; backdrop-filter: blur(10px); border: 2px solid var(--gold) !important; }
-        .gold-gradient-text { background: linear-gradient(to right, #FFD700, #FFB347); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-        .divider-gold { height: 2px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 15px auto; width: 80%; }
-        .modal-subtitle { color: #b0b0c0; font-size: 0.9rem; font-style: italic; }
-        .form-label-custom { color: var(--gold); font-size: 0.8rem; font-weight: bold; margin-left: 10px; margin-bottom: 5px; display: block; }
+        .cerrar-modal:hover {
+            background: var(--gold);
+            color: #0b0b14;
+        }
+
+        @media (max-width: 700px) {
+            .event-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .event-info p {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Efecto de Cristal para el Modal */
+        .glass-effect {
+            background: rgba(28, 28, 42, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--gold) !important;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Títulos y Divisores */
+        .gold-gradient-text {
+            background: linear-gradient(to right, #FFD700, #FFB347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+
+        .divider-gold {
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 15px auto;
+            width: 80%;
+        }
+
+        .modal-subtitle {
+            color: #b0b0c0;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Inputs Estilo Moderno */
+        .form-label-custom {
+            color: var(--gold);
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
         .form-control-custom {
             background: rgba(255, 255, 255, 0.05) !important;
             border: 1px solid var(--border) !important;
@@ -253,7 +365,15 @@
             width: 100%;
             transition: all 0.3s ease;
         }
-        .form-control-custom:focus { border-color: var(--gold) !important; box-shadow: 0 0 10px rgba(255, 215, 0, 0.2) !important; outline: none; background: rgba(255, 255, 255, 0.1) !important; }
+
+        .form-control-custom:focus {
+            border-color: var(--gold) !important;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2) !important;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        /* Botones */
         .btn-gold-action {
             background: var(--gold);
             color: #0b0b14;
@@ -265,9 +385,29 @@
             transition: all 0.3s ease;
             cursor: pointer;
         }
-        .btn-gold-action:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4); filter: brightness(1.1); }
-        .btn-cancel-custom { background: transparent; color: #666; border: 1px solid #333; padding: 14px 20px; border-radius: 12px; cursor: pointer; transition: 0.3s; }
-        .btn-cancel-custom:hover { color: white; border-color: #ff4747; }
+
+        .btn-gold-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            filter: brightness(1.1);
+        }
+
+        .btn-cancel-custom {
+            background: transparent;
+            color: #666;
+            border: 1px solid #333;
+            padding: 14px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-cancel-custom:hover {
+            color: white;
+            border-color: #ff4747;
+        }
+
+        /* Extras */
         .close-x {
             position: absolute;
             right: 20px;
@@ -285,366 +425,366 @@
             font-size: 20px;
             transition: 0.3s;
         }
-        .close-x:hover { background: var(--gold); color: black; }
 
-        @media (max-width: 700px) { .event-card { flex-direction: column; text-align: center; } .event-info p { justify-content: center; } }
-        @media (max-width: 850px) { .container { grid-template-columns: 1fr; } }
+        .close-x:hover {
+            background: var(--gold);
+            color: black;
+        }
+
+        .info-icon {
+            background: var(--gold);
+            color: black;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
+            font-size: 12px;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+        }
     </style>
 </head>
+
 <body>
 
-<header>
-    <a href="#" class="logo">
-        <img src="https://raw.githubusercontent.com/Walt2dev/oroymiel.top/main/logo_arte_bc.png" alt="Logo Arte BC" width="190px">
-    </a>
-    <nav class="nav-links">
-        <button class="btn-publicar" onclick="toggleModal('modal-form')">+ Publicar Evento</button>
-    </nav>
-</header>
+    <header>
+        <a href="#" class="logo">
+            <img src="https://raw.githubusercontent.com/Walt2dev/oroymiel.top/main/logo_arte_bc.png" alt="Logo Arte BC"
+                width="190px">
+        </a>
+        <nav class="nav-links">
 
-<!-- ===== CARRUSEL PRINCIPAL ===== -->
-<div class="carousel-principal" id="carousel-principal">
-    <div class="carousel-inner"></div>
-    <button class="carousel-control prev" onclick="cambiarSlide(-1)">&#10094;</button>
-    <button class="carousel-control next" onclick="cambiarSlide(1)">&#10095;</button>
-</div>
+            <button class="btn-publicar" onclick="toggleModal('modal-form')">+ Publicar Evento</button>
+        </nav>
+    </header>
 
-<!-- ===== CONTENIDO PRINCIPAL ===== -->
-<div class="container">
-    <main class="main-content">
-        <h2>Cartelera Ensenada</h2>
-        <div id="lista-eventos"></div>
-    </main>
+    <div class="container">
+        <main class="main-content">
+            <h2>Cartelera Ensenada</h2>
+            <div id="lista-eventos"></div>
+        </main>
 
-    <aside>
-        <div class="sidebar-card">
-            <h3><i class="fas fa-star"></i> Próximos Eventos</h3>
-            <div class="carousel" id="carousel-mini">
-                <!-- Estático por ahora -->
-                <div class="carousel-item active"><h4>Festival de Jazz</h4><p>25 Feb - Cearte</p></div>
-                <div class="carousel-item"><h4>Noche de Cartomancia</h4><p>02 Mar - Centro</p></div>
-                <div class="carousel-item"><h4>Trail Running 5K</h4><p>15 Mar - Cañón</p></div>
+        <aside>
+            <div class="sidebar-card">
+                <h3><i class="fas fa-star"></i> Próximos Eventos</h3>
+                <div class="carousel" id="carousel">
+                    <div class="carousel-item active">
+                        <h4>Festival de Jazz</h4>
+                        <p>25 Feb - Cearte</p>
+                    </div>
+                    <div class="carousel-item">
+                        <h4>Noche de Cartomancia</h4>
+                        <p>02 Mar - Centro</p>
+                    </div>
+                    <div class="carousel-item">
+                        <h4>Trail Running 5K</h4>
+                        <p>15 Mar - Cañón</p>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="sidebar-card">
-            <h3><i class="fas fa-calendar-alt"></i> Calendario</h3>
-            <div class="calendar" id="calendar"></div>
-        </div>
-    </aside>
-</div>
+            <div class="sidebar-card">
+                <h3><i class="fas fa-calendar-alt"></i> Calendario</h3>
+                <div class="calendar" id="calendar"></div>
+            </div>
+        </aside>
+    </div>
 
-<!-- ===== MODAL PUBLICAR EVENTO ===== -->
-<div id="modal-form" class="modal">
-    <div class="modal-content glass-effect">
-        <button class="close-x" onclick="toggleModal('modal-form')">&times;</button>
-        <h3 class="gold-gradient-text"><i class="fas fa-honey-comb"></i> Publicar Evento Cultural</h3>
-        <div class="divider-gold"></div>
-        <p class="modal-subtitle">Los eventos se revisan antes de publicarse. Oro y Miel.</p>
+    <!-- Modal para publicación -->
+    <div id="modal-form" class="modal">
+        <div class="modal-content glass-effect">
+            <div class="modal-header-custom">
+                <button class="close-x" onclick="toggleModal('modal-form')">&times;</button>
+            </div>
 
-        <form id="form-evento" onsubmit="enviarHojaCalculo(event)">
-            <label class="form-label-custom">Nombre del Evento</label>
-            <input type="text" id="titulo" class="form-control-custom" required>
+            <div class="text-center mb-4">
+                <h3 class="gold-gradient-text">
+                    <i class="fas fa-honey-comb"></i> Publicar Evento Cultural
+                    <span class="info-icon" title="Los eventos son revisados manualmente">i</span>
+                </h3>
+                <div class="divider-gold"></div>
+                <p class="modal-subtitle">Los eventos se revisan antes de publicarse. Oro y Miel.</p>
+            </div>
 
-            <label class="form-label-custom">Lugar</label>
-            <input type="text" id="lugar" class="form-control-custom" required>
+            <form id="form-evento" onsubmit="enviarHojaCalculo(event)" class="row g-3">
+                <div class="col-12">
+                    <label class="form-label-custom">Nombre del Evento</label>
+                    <input type="text" id="titulo" class="form-control-custom" placeholder="Ej. Festival de Jazz"
+                        required>
+                </div>
 
-            <div style="display: flex; gap: 1rem;">
-                <div style="flex:1">
+                <div class="col-12">
+                    <label class="form-label-custom">Lugar</label>
+                    <input type="text" id="lugar" class="form-control-custom"
+                        placeholder="Lugar (ej. Cearte, Rivieras...)" required>
+                </div>
+
+                <div class="col-md-6">
                     <label class="form-label-custom">Fecha</label>
                     <input type="date" id="fecha" class="form-control-custom" required>
                 </div>
-                <div style="flex:1">
+
+                <div class="col-md-6">
                     <label class="form-label-custom">Hora</label>
                     <input type="time" id="hora" class="form-control-custom" required>
                 </div>
-            </div>
 
-            <label class="form-label-custom">Precio</label>
-            <input type="text" id="precio" class="form-control-custom" value="Gratis">
 
-            <label class="form-label-custom">Enlace (URL)</label>
-            <input type="url" id="link" class="form-control-custom" required>
+                <div class="col-md-6">
+                    <label class="form-label-custom">Precio</label>
+                    <input type="text" id="precio" class="form-control-custom" placeholder="Ej: $150 o Gratis"
+                        value="Gratis">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label-custom">Enlace (URL)</label>
+                    <input type="url" id="link" class="form-control-custom" placeholder="https://..." required>
+                </div>
 
-            <label class="form-label-custom">Foto del evento (opcional)</label>
-            <input type="file" id="imagen" accept="image/*" class="form-control-custom">
-            <small class="modal-subtitle">Se mostrará en carrusel y tarjeta.</small>
+                <div class="col-12">
+                    <label class="form-label-custom">Imagen del evento</label>
+                    <input type="file" id="imagen" accept="image/*" class="form-control-custom">
+                    <small style="color: #aaa;">Selecciona una imagen (máx. 5 MB)</small>
+                </div>
 
-            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-                <button type="submit" class="btn-gold-action" id="btn-enviar">Enviar para Aprobación</button>
-                <button type="button" class="btn-cancel-custom" onclick="toggleModal('modal-form')">Cancelar</button>
-            </div>
-        </form>
+                <div class="col-12 mt-4 d-flex gap-2">
+                    <button type="submit" class="btn-gold-action w-100" id="btn-enviar">
+                        Enviar para Aprobación
+                    </button>
+                    <button type="button" class="btn-cancel-custom" onclick="toggleModal('modal-form')">
+                        Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<!-- ===== MODAL DETALLE EVENTO ===== -->
-<div id="modal-evento-detalle" class="modal">
-    <div class="modal-content" id="detalle-contenido"></div>
-</div>
+    <!-- Modal para detalles de un evento (Saber más) -->
+    <div id="modal-evento-detalle" class="modal">
+        <div class="modal-content" id="detalle-contenido"></div>
+    </div>
 
-<!-- ===== MODAL EVENTOS DEL DÍA ===== -->
-<div id="modal-dia-eventos" class="modal">
-    <div class="modal-content" id="dia-eventos-contenido"></div>
-</div>
+    <!-- Modal para eventos del día (calendario) -->
+    <div id="modal-dia-eventos" class="modal">
+        <div class="modal-content" id="dia-eventos-contenido"></div>
+    </div>
 
-<script>
-    // ==============================================
-    // CONFIGURACIÓN (¡CAMBIA ESTO POR TU URL!)
-    // ==============================================
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3t77ghQHLVPCWfZ1NrSdkfQ_bPFZ8TXBaH-4SMDbsFflzB8M0x68shdBd8gAw9UbWBw/exec'; // ← REEMPLAZA
+    <script>
 
-    // ==============================================
-    // VARIABLES GLOBALES
-    // ==============================================
-    let eventos = [];
-    let slideIndex = 0;
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3t77ghQHLVPCWfZ1NrSdkfQ_bPFZ8TXBaH-4SMDbsFflzB8M0x68shdBd8gAw9UbWBw/exec';
 
-    // ==============================================
-    // CARGAR EVENTOS (JSONP)
-    // ==============================================
-    function cargarEventos() {
-        const contenedor = document.getElementById('lista-eventos');
-        contenedor.innerHTML = '<p style="color: var(--gold);">Cargando eventos...</p>';
+        // Variable global para eventos
+        let eventos = [];
 
-        return new Promise((resolve, reject) => {
-            const callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
-            window[callbackName] = function (data) {
-                delete window[callbackName];
-                document.body.removeChild(script);
-                resolve(data);
-            };
+        // Función para cargar eventos usando JSONP
+        function cargarEventos() {
+            const contenedor = document.getElementById('lista-eventos');
+            contenedor.innerHTML = '<p style="color: var(--gold);">Invocando los datos de la colmena...</p>';
 
-            const script = document.createElement('script');
-            script.src = SCRIPT_URL + '?accion=obtener&callback=' + callbackName;
-            script.onerror = () => {
-                delete window[callbackName];
-                document.body.removeChild(script);
-                reject(new Error('Error de conexión'));
-                contenedor.innerHTML = '<p style="color: #FFB347;">Error de conexión.</p>';
-            };
-            document.body.appendChild(script);
-        })
-        .then(data => {
-            if (data.error) {
-                throw new Error(data.error);
-            }
-            eventos = Array.isArray(data) ? data.map(ev => {
-                if (ev.fecha && typeof ev.fecha === 'string' && ev.fecha.includes('T')) {
-                    ev.fecha = ev.fecha.split('T')[0];
-                }
-                return {
-                    ...ev,
-                    hora: ev.hora || '--:--',
-                    precio: ev.precio || 'Gratis',
-                    categoria: ev.categoria || 'Cultura',
-                    imagen: ev.imagen || ''
+            return new Promise((resolve, reject) => {
+                const callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+                window[callbackName] = function (data) {
+                    // Limpiar
+                    delete window[callbackName];
+                    document.body.removeChild(script);
+                    resolve(data);
                 };
-            }) : [];
-            renderEventos();
-            generarCalendario();
-            actualizarCarruselPrincipal();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            contenedor.innerHTML = '<p style="color: #FFB347;">Error al cargar eventos.</p>';
-        });
-    }
 
-    // ==============================================
-    // RENDERIZAR TARJETAS DE EVENTOS
-    // ==============================================
-    function renderEventos() {
-        const contenedor = document.getElementById('lista-eventos');
-        if (!eventos.length) {
-            contenedor.innerHTML = '<p>No hay eventos aprobados en este momento. ¡Sé el primero en publicar!</p>';
-            return;
+                const script = document.createElement('script');
+                script.src = SCRIPT_URL + '?accion=obtener&callback=' + callbackName;
+                script.onerror = () => {
+                    delete window[callbackName];
+                    document.body.removeChild(script);
+                    reject(new Error('Error al cargar los eventos'));
+                    contenedor.innerHTML = '<p style="color: #FFB347;">Error de conexión.</p>';
+                };
+                document.body.appendChild(script);
+            })
+                .then(data => {
+                    // Procesar eventos igual que antes
+                    eventos = Array.isArray(data) ? data.map(ev => {
+                        if (ev.fecha && typeof ev.fecha === 'string' && ev.fecha.includes('T')) {
+                            ev.fecha = ev.fecha.split('T')[0];
+                        }
+                        return {
+                            ...ev,
+                            hora: ev.hora || '--:--',
+                            precio: ev.precio || 'Gratis',
+                            categoria: ev.categoria || 'Cultura'
+                        };
+                    }) : [];
+                    renderEventos();
+                    generarCalendario();
+                })
+                .catch(error => {
+                    console.error('Error al cargar eventos:', error);
+                    contenedor.innerHTML = '<p style="color: #FFB347;">No se pudieron cargar los eventos. Verifica la conexión.</p>';
+                });
         }
+        // ---------- RENDERIZAR TARJETAS DE EVENTOS ----------
+        function renderEventos() {
+            const contenedor = document.getElementById('lista-eventos');
+            if (!eventos.length) {
+                contenedor.innerHTML = '<p>No hay eventos aprobados en este momento. ¡Sé el primero en publicar!</p>';
+                return;
+            }
 
-        contenedor.innerHTML = '';
-        eventos.forEach(evento => {
-            const imagenSrc = evento.imagen || 'https://picsum.photos/120/120?random=' + evento.id;
+            contenedor.innerHTML = '';
+            eventos.forEach(evento => {
+                const imagenSrc = evento.imagen || 'https://picsum.photos/400/250?random=' + evento.id;
 
-            const card = document.createElement('div');
-            card.className = 'event-card';
-            card.innerHTML = `
-                <img src="${imagenSrc}" alt="${evento.titulo}" class="event-image" onerror="this.src='https://picsum.photos/120/120?random=${evento.id}'">
+                const card = document.createElement('div');
+                card.className = 'event-card';
+                card.innerHTML = `
+                <div class="categoria-tag">#${evento.categoria || 'Cultura'}</div>
                 <div class="event-info">
                     <h3>${evento.titulo}</h3>
                     <p><i class="fas fa-map-marker-alt"></i> ${evento.lugar}</p>
-                    <p><i class="fas fa-calendar-alt"></i> ${formatearFecha(evento.fecha)} - <i class="fas fa-clock"></i> ${evento.hora}</p>
-                    <p><i class="fas fa-ticket-alt"></i> <strong>Precio:</strong> ${evento.precio}</p>
+                    <p><i class="fas fa-calendar-alt"></i> ${formatearFecha(evento.fecha)} - <i class="fas fa-clock"></i> ${evento.hora || '--:--'}</p>
+                    <p><i class="fas fa-ticket-alt"></i> <strong>Precio:</strong> ${evento.precio || 'Gratis'}</p>
+                    <p class="desc-corta">${(evento.descripcion || 'Sin descripción disponible.').substring(0, 80)}...</p>
                     <button class="saber-mas" data-id="${evento.id}">Saber más</button>
                 </div>
             `;
-            contenedor.appendChild(card);
-        });
-
-        document.querySelectorAll('.saber-mas').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const id = e.target.dataset.id;
-                const evento = eventos.find(ev => ev.id == id);
-                if (evento) mostrarDetalleEvento(evento);
+                contenedor.appendChild(card);
             });
-        });
-    }
 
-    // ==============================================
-    // CARRUSEL PRINCIPAL
-    // ==============================================
-    function actualizarCarruselPrincipal() {
-        const ultimos = [...eventos]
-            .sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''))
-            .slice(0, 3);
+            // Delegación de eventos para los botones
+            contenedor.querySelectorAll('.saber-mas').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = e.target.dataset.id;
+                    const evento = eventos.find(ev => ev.id == id);
+                    if (evento) mostrarDetalleEvento(evento);
+                });
+            });
+        }
 
-        const carouselInner = document.querySelector('.carousel-inner');
-        if (!carouselInner) return;
-        carouselInner.innerHTML = '';
+        // Formatear fecha YYYY-MM-DD a DD/MM/YYYY
+        function formatearFecha(fechaStr) {
+            if (!fechaStr) return 'Fecha pendiente';
+            const partes = fechaStr.split('-');
+            return partes.length === 3 ? `${partes[2]}/${partes[1]}/${partes[0]}` : fechaStr;
+        }
 
-        ultimos.forEach((evento, index) => {
-            const fondo = evento.imagen || 'https://picsum.photos/1200/400?random=' + evento.id;
-            const div = document.createElement('div');
-            div.className = 'carousel-item-principal' + (index === 0 ? ' active' : '');
-            div.style.backgroundImage = `linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('${fondo}')`;
-            div.innerHTML = `
-                <div class="carousel-caption">
-                    <h3>${evento.titulo}</h3>
-                    <p>${evento.lugar} - ${formatearFecha(evento.fecha)}</p>
-                    <button class="saber-mas" data-id="${evento.id}">Saber más</button>
-                </div>
-            `;
-            carouselInner.appendChild(div);
-        });
+        // ---------- MODAL DETALLE EVENTO ----------
+        function mostrarDetalleEvento(evento) {
+            const modal = document.getElementById('modal-evento-detalle');
+            const contenido = document.getElementById('detalle-contenido');
+            const imagenSrc = evento.imagen || 'https://picsum.photos/600/350?random=' + evento.id;
 
-        slideIndex = 0;
-        mostrarSlide(0);
-    }
-
-    function cambiarSlide(n) {
-        mostrarSlide(slideIndex + n);
-    }
-
-    function mostrarSlide(n) {
-        const slides = document.querySelectorAll('.carousel-item-principal');
-        if (slides.length === 0) return;
-        slideIndex = (n + slides.length) % slides.length;
-        slides.forEach(slide => slide.classList.remove('active'));
-        slides[slideIndex].classList.add('active');
-    }
-
-    // ==============================================
-    // FORMATEAR FECHA
-    // ==============================================
-    function formatearFecha(fechaStr) {
-        if (!fechaStr) return 'Fecha pendiente';
-        const partes = fechaStr.split('-');
-        return partes.length === 3 ? `${partes[2]}/${partes[1]}/${partes[0]}` : fechaStr;
-    }
-
-    // ==============================================
-    // MODAL DETALLE EVENTO
-    // ==============================================
-    function mostrarDetalleEvento(evento) {
-        const modal = document.getElementById('modal-evento-detalle');
-        const contenido = document.getElementById('detalle-contenido');
-        const imagenSrc = evento.imagen || 'https://picsum.photos/600/350?random=' + evento.id;
-
-        contenido.innerHTML = `
-            <div style="position: relative;">
+            contenido.innerHTML = `
+            <div class="modal-body-custom">
                 <button class="close-x" onclick="toggleModal('modal-evento-detalle')">&times;</button>
-                <img class="modal-imagen" src="${imagenSrc}" alt="${evento.titulo}">
+                <img class="modal-imagen-top" src="${imagenSrc}" alt="${evento.titulo}" style="width:100%; border-radius:15px; margin-bottom:15px;">
                 <h2 class="gold-gradient-text">${evento.titulo}</h2>
                 <hr style="border-color: var(--border)">
-                <p><i class="fas fa-tag"></i> <strong>Categoría:</strong> ${evento.categoria}</p>
+                <p><i class="fas fa-tag"></i> <strong>Categoría:</strong> ${evento.categoria || 'Cultura'}</p>
                 <p><i class="fas fa-map-marker-alt"></i> <strong>Lugar:</strong> ${evento.lugar}</p>
                 <p><i class="fas fa-calendar-day"></i> <strong>Fecha:</strong> ${formatearFecha(evento.fecha)}</p>
-                <p><i class="fas fa-clock"></i> <strong>Hora:</strong> ${evento.hora}</p>
-                <p><i class="fas fa-ticket-alt"></i> <strong>Precio:</strong> ${evento.precio}</p>
-                <p style="margin-top:15px;">${evento.descripcion}</p>
-                <a href="${evento.link}" target="_blank" class="btn-gold-action" style="display:block; text-align:center; text-decoration:none; margin-top:20px;">Ver enlace oficial</a>
+                <p style="margin-top:15px;">${evento.descripcion || 'Sin descripción detallada.'}</p>
+                <a href="${evento.link}" target="_blank" class="btn-gold-action" style="display:block; text-align:center; text-decoration:none; margin-top:20px;">
+                    Ver enlace oficial
+                </a>
             </div>
         `;
-        modal.style.display = 'flex';
-    }
-
-    // ==============================================
-    // CALENDARIO
-    // ==============================================
-    function generarCalendario() {
-        const div = document.getElementById('calendar');
-        const hoy = new Date();
-        const mesActual = hoy.getMonth();
-        const añoActual = hoy.getFullYear();
-
-        let html = "<table><tr><th>L</th><th>M</th><th>M</th><th>J</th><th>V</th><th>S</th><th>D</th></tr><tr>";
-        const primerDia = new Date(añoActual, mesActual, 1).getDay();
-        const totalDias = new Date(añoActual, mesActual + 1, 0).getDate();
-        const ajustePrimerDia = primerDia === 0 ? 6 : primerDia - 1;
-
-        for (let x = 0; x < ajustePrimerDia; x++) html += "<td></td>";
-
-        const fechasEventos = eventos.map(ev => ev.fecha);
-
-        for (let i = 1; i <= totalDias; i++) {
-            const fechaStr = `${añoActual}-${(mesActual+1).toString().padStart(2,'0')}-${i.toString().padStart(2,'0')}`;
-            const tieneEvento = fechasEventos.includes(fechaStr);
-            html += `<td class="${tieneEvento ? 'has-event' : ''}" data-fecha="${fechaStr}">${i}</td>`;
-            if ((i + ajustePrimerDia) % 7 === 0) html += "</tr><tr>";
+            modal.style.display = 'flex';
         }
-        html += "</tr></table>";
-        div.innerHTML = html;
 
-        div.querySelectorAll('.has-event').forEach(td => {
-            td.addEventListener('click', (e) => {
-                mostrarEventosDelDia(e.target.dataset.fecha);
+        // ---------- CALENDARIO DINÁMICO ----------
+        function generarCalendario() {
+            const div = document.getElementById('calendar');
+            const hoy = new Date();
+            const mesActual = hoy.getMonth();
+            const añoActual = hoy.getFullYear();
+
+            // Nombres de días
+            let html = "<table><tr><th>L</th><th>M</th><th>M</th><th>J</th><th>V</th><th>S</th><th>D</th></tr><tr>";
+
+            // Obtener primer día del mes y total de días
+            const primerDia = new Date(añoActual, mesActual, 1).getDay();
+            const totalDias = new Date(añoActual, mesActual + 1, 0).getDate();
+            const ajustePrimerDia = primerDia === 0 ? 6 : primerDia - 1;
+
+            // Espacios vacíos al inicio
+            for (let x = 0; x < ajustePrimerDia; x++) { html += "<td></td>"; }
+
+            const fechasEventos = eventos.map(ev => ev.fecha);
+
+            for (let i = 1; i <= totalDias; i++) {
+                const fechaStr = `${añoActual}-${(mesActual + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}`;
+                const tieneEvento = fechasEventos.includes(fechaStr);
+                let className = tieneEvento ? "has-event" : "";
+
+                html += `<td class="${className}" data-fecha="${fechaStr}">${i}</td>`;
+                if ((i + ajustePrimerDia) % 7 === 0) html += "</tr><tr>";
+            }
+            html += "</tr></table>";
+            div.innerHTML = html;
+
+            div.querySelectorAll('.has-event').forEach(td => {
+                td.addEventListener('click', (e) => {
+                    mostrarEventosDelDia(e.target.dataset.fecha);
+                });
             });
-        });
-    }
+        }
 
-    function mostrarEventosDelDia(fecha) {
-        const eventosDelDia = eventos.filter(ev => ev.fecha === fecha);
-        const modal = document.getElementById('modal-dia-eventos');
-        const contenido = document.getElementById('dia-eventos-contenido');
+        // ---------- MODAL EVENTOS POR DÍA ----------
+        function mostrarEventosDelDia(fecha) {
+            const eventosDelDia = eventos.filter(ev => ev.fecha === fecha);
+            const modal = document.getElementById('modal-dia-eventos');
+            const contenido = document.getElementById('dia-eventos-contenido');
 
-        let lista = `<button class="close-x" onclick="toggleModal('modal-dia-eventos')">&times;</button>
+            let lista = `<button class="close-x" onclick="toggleModal('modal-dia-eventos')">&times;</button>
                      <h3 class="gold-gradient-text">Eventos el ${formatearFecha(fecha)}</h3><br>`;
-        eventosDelDia.forEach(ev => {
-            lista += `
-                <div style="border-bottom:1px solid var(--border); padding:10px;">
+
+            eventosDelDia.forEach(ev => {
+                lista += `
+                <div class="mini-card-evento">
                     <strong>${ev.titulo}</strong><br>
                     <small><i class="fas fa-location-arrow"></i> ${ev.lugar}</small><br>
-                    <button class="btn-ver-mas-simple" style="background:var(--gold); border:none; border-radius:20px; padding:5px 10px; margin-top:5px; cursor:pointer;" onclick="verDesdeCalendario(${ev.id})">Ver detalle</button>
+                    <button class="btn-ver-mas-simple" onclick="verDesdeCalendario(${ev.id})">Ver detalle</button>
                 </div>`;
-        });
-
-        contenido.innerHTML = lista;
-        modal.style.display = 'flex';
-    }
-
-    function verDesdeCalendario(id) {
-        toggleModal('modal-dia-eventos');
-        const evento = eventos.find(ev => ev.id == id);
-        if (evento) mostrarDetalleEvento(evento);
-    }
-
-    // ==============================================
-    // ENVÍO DEL FORMULARIO (CORS)
-    // ==============================================
-    async function enviarHojaCalculo(e) {
-        e.preventDefault();
-        const btn = document.getElementById('btn-enviar');
-        const inputImagen = document.getElementById('imagen');
-        let imagenBase64 = '';
-
-        if (inputImagen.files.length > 0) {
-            const file = inputImagen.files[0];
-            imagenBase64 = await new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = reject;
-                reader.readAsDataURL(file);
             });
+
+            contenido.innerHTML = lista;
+            modal.style.display = 'flex';
         }
+
+        function verDesdeCalendario(id) {
+            toggleModal('modal-dia-eventos');
+            const evento = eventos.find(ev => ev.id == id);
+            if (evento) mostrarDetalleEvento(evento);
+        }
+
+        // ---------- FUNCIONES DE INTERFAZ ----------
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+async function enviarHojaCalculo(e) {
+    e.preventDefault();
+    const btn = document.getElementById('btn-enviar');
+    const imagenInput = document.getElementById('imagen');
+    const imagenFile = imagenInput.files[0];
+
+    // Si no hay imagen, puedes continuar sin ella o pedir una
+    if (!imagenFile) {
+        alert("Por favor selecciona una imagen para el evento.");
+        return;
+    }
+
+    // Validar tamaño (opcional, 5 MB)
+    if (imagenFile.size > 5 * 1024 * 1024) {
+        alert("La imagen no debe superar los 5 MB.");
+        return;
+    }
+
+    // Leer la imagen como base64
+    const reader = new FileReader();
+    reader.readAsDataURL(imagenFile);
+    reader.onload = async function () {
+        const base64Imagen = reader.result; // Incluye "data:image/png;base64,"
 
         const datos = {
             titulo: document.getElementById('titulo').value,
@@ -653,52 +793,39 @@
             link: document.getElementById('link').value,
             hora: document.getElementById('hora').value,
             precio: document.getElementById('precio').value,
-            imagenBase64: imagenBase64
+            imagen: base64Imagen      // <-- Nuevo campo
         };
 
         btn.disabled = true;
         btn.innerText = "Enviando...";
 
         try {
-            const response = await fetch(SCRIPT_URL, {
+            await fetch(SCRIPT_URL, {
                 method: 'POST',
-                mode: 'cors',
-                headers: { 'Content-Type': 'application/json' },
+                mode: 'no-cors',       // Seguimos usando no-cors
+                headers: { 'Content-Type': 'text/plain' }, // Importante: text/plain
                 body: JSON.stringify(datos)
             });
-            const result = await response.json();
-            if (result.success) {
-                alert("¡Oro y Miel! Recibimos tu evento. Lo revisaremos pronto.");
-                toggleModal('modal-form');
-                document.getElementById('form-evento').reset();
-                cargarEventos(); // opcional: recargar para ver el nuevo (si está aprobado)
-            } else {
-                alert("Error del servidor: " + result.error);
-            }
+            alert("¡Oro y Miel! Recibimos tu evento. Lo revisaremos pronto.");
+            toggleModal('modal-form');
+            document.getElementById('form-evento').reset();
+            imagenInput.value = ''; // Limpiar input file
         } catch (err) {
             alert("Error al enviar. Revisa tu conexión.");
-            console.error(err);
         } finally {
             btn.disabled = false;
             btn.innerText = "Enviar para Aprobación";
         }
-    }
-
-    // ==============================================
-    // UTILIDADES
-    // ==============================================
-    function toggleModal(id) {
-        const modal = document.getElementById(id);
-        modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
-    }
-
-    window.onload = cargarEventos;
-
-    window.onclick = function(event) {
-        if (event.target.className === 'modal') {
-            event.target.style.display = "none";
-        }
     };
-</script>
-</body>
-</html>
+}
+
+        // Inicialización al cargar la página
+        window.onload = cargarEventos;
+
+        // Cerrar con click fuera
+        window.onclick = function (event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
