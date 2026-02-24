@@ -762,19 +762,17 @@
             modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
         }
 
-async function enviarHojaCalculo(e) {
+function enviarHojaCalculo(e) {
     e.preventDefault();
     const btn = document.getElementById('btn-enviar');
     const imagenInput = document.getElementById('imagen');
     const imagenFile = imagenInput.files[0];
 
-    // Si no hay imagen, puedes continuar sin ella o pedir una
     if (!imagenFile) {
         alert("Por favor selecciona una imagen para el evento.");
         return;
     }
 
-    // Validar tamaño (opcional, 5 MB)
     if (imagenFile.size > 5 * 1024 * 1024) {
         alert("La imagen no debe superar los 5 MB.");
         return;
@@ -783,8 +781,8 @@ async function enviarHojaCalculo(e) {
     // Leer la imagen como base64
     const reader = new FileReader();
     reader.readAsDataURL(imagenFile);
-    reader.onload = async function () {
-        const base64Imagen = reader.result; // Incluye "data:image/png;base64,"
+    reader.onload = function () {
+        const base64Imagen = reader.result;
 
         const datos = {
             titulo: document.getElementById('titulo').value,
@@ -793,29 +791,45 @@ async function enviarHojaCalculo(e) {
             link: document.getElementById('link').value,
             hora: document.getElementById('hora').value,
             precio: document.getElementById('precio').value,
-            imagen: base64Imagen      // <-- Nuevo campo
+            imagen: base64Imagen
         };
 
-        btn.disabled = true;
-        btn.innerText = "Enviando...";
+        // Crear un formulario temporal
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = SCRIPT_URL;
+        form.target = 'iframe-oculto'; // apunta al iframe
+        form.style.display = 'none';
 
-        try {
-            await fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',       // Seguimos usando no-cors
-                headers: { 'Content-Type': 'text/plain' }, // Importante: text/plain
-                body: JSON.stringify(datos)
-            });
+        // Añadir campos como inputs ocultos
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'data'; // nombre del campo
+        input.value = JSON.stringify(datos);
+        form.appendChild(input);
+
+        document.body.appendChild(form);
+
+        // Manejar el evento de carga del iframe para saber que terminó
+        const iframe = document.getElementById('iframe-oculto');
+        iframe.onload = function() {
+            // Aquí podrías comprobar el contenido si quisieras, pero con no-cors no podemos
+            // Asumimos éxito
             alert("¡Oro y Miel! Recibimos tu evento. Lo revisaremos pronto.");
             toggleModal('modal-form');
             document.getElementById('form-evento').reset();
-            imagenInput.value = ''; // Limpiar input file
-        } catch (err) {
-            alert("Error al enviar. Revisa tu conexión.");
-        } finally {
+            imagenInput.value = '';
             btn.disabled = false;
             btn.innerText = "Enviar para Aprobación";
-        }
+            // Limpiar el formulario temporal
+            document.body.removeChild(form);
+        };
+
+        // Enviar el formulario
+        form.submit();
+
+        btn.disabled = true;
+        btn.innerText = "Enviando...";
     };
 }
 
@@ -829,3 +843,6 @@ async function enviarHojaCalculo(e) {
             }
         }
     </script>
+
+    <iframe id="iframe-oculto" name="iframe-oculto" style="display:none;"></iframe>
+
