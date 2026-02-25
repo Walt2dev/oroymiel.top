@@ -506,6 +506,20 @@
 
     let eventos = [];
 
+    // ========== Formatear hora (quitar la fecha base 1899-12-31 si existe) ==========
+    function formatearHora(horaStr) {
+        if (!horaStr) return '--:--';
+        // Si viene como "1899-12-31T03:00:00.000Z" o similar, extraer solo HH:MM
+        if (horaStr.includes('T')) {
+            const match = horaStr.match(/T(\d{2}:\d{2})/);
+            if (match) return match[1];
+            // fallback: tomar los primeros 5 caracteres después de T
+            return horaStr.split('T')[1].substring(0, 5);
+        }
+        // Si ya está en formato HH:MM, devolverlo (primeros 5 caracteres por seguridad)
+        return horaStr.substring(0, 5);
+    }
+
     // ========== Cargar eventos (JSONP) ==========
     function cargarEventos() {
         const contenedor = document.getElementById('lista-eventos');
@@ -541,6 +555,10 @@
                     categoria: ev.categoria || 'Cultura'
                 };
             }) : [];
+
+            // Ordenar del más reciente al más antiguo (fecha descendente)
+            eventos.sort((a, b) => b.fecha.localeCompare(a.fecha));
+
             renderEventos();
             actualizarCarrusel();
             generarCalendario();
@@ -569,7 +587,7 @@
                 <div class="event-info">
                     <h3>${evento.titulo}</h3>
                     <p><i class="fas fa-map-marker-alt"></i> ${evento.lugar}</p>
-                    <p><i class="fas fa-calendar-alt"></i> ${formatearFecha(evento.fecha)} - <i class="fas fa-clock"></i> ${evento.hora}</p>
+                    <p><i class="fas fa-calendar-alt"></i> ${formatearFecha(evento.fecha)} - <i class="fas fa-clock"></i> ${formatearHora(evento.hora)}</p>
                     <p><i class="fas fa-ticket-alt"></i> <strong>Precio:</strong> ${evento.precio}</p>
                     <p class="desc-corta">${(evento.descripcion || '').substring(0, 80)}...</p>
                     <button class="saber-mas" data-id="${evento.id}">Saber más</button>
@@ -608,7 +626,7 @@
                 <p><i class="fas fa-tag"></i> <strong>Categoría:</strong> ${evento.categoria || 'Cultura'}</p>
                 <p><i class="fas fa-map-marker-alt"></i> <strong>Lugar:</strong> ${evento.lugar}</p>
                 <p><i class="fas fa-calendar-day"></i> <strong>Fecha:</strong> ${formatearFecha(evento.fecha)}</p>
-                <p><i class="fas fa-clock"></i> <strong>Hora:</strong> ${evento.hora}</p>
+                <p><i class="fas fa-clock"></i> <strong>Hora:</strong> ${formatearHora(evento.hora)}</p>
                 <p><i class="fas fa-ticket-alt"></i> <strong>Precio:</strong> ${evento.precio}</p>
                 <p style="margin-top:15px;">${evento.descripcion || 'Sin descripción detallada.'}</p>
                 <a href="${evento.link}" target="_blank" class="btn-gold-action" style="display:block; text-align:center; text-decoration:none; margin-top:20px;">
@@ -623,7 +641,7 @@
     function actualizarCarrusel() {
         const carousel = document.getElementById('carousel');
         if (!carousel) return;
-        // Tomamos los primeros 3 eventos
+        // Tomamos los primeros 3 eventos (ya ordenados)
         const proximos = eventos.slice(0, 3);
         if (proximos.length === 0) {
             carousel.innerHTML = '<div class="carousel-item active"><h4>Próximamente</h4><p>Eventos culturales</p></div>';
@@ -695,7 +713,7 @@
             lista += `
                 <div style="background: #2a2a40; border-radius: 12px; padding: 10px; margin-bottom: 10px;">
                     <strong>${ev.titulo}</strong><br>
-                    <small><i class="fas fa-location-arrow"></i> ${ev.lugar}</small><br>
+                    <small><i class="fas fa-location-arrow"></i> ${ev.lugar} - ${formatearHora(ev.hora)}</small><br>
                     <button class="btn-gold-action" style="padding: 5px 15px; margin-top: 5px;" onclick="verDesdeCalendario(${ev.id})">Ver detalle</button>
                 </div>`;
         });
@@ -789,4 +807,3 @@
 </script>
 </body>
 </html>
-
