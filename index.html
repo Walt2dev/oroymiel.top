@@ -96,11 +96,23 @@
             display: flex;
             gap: 1.5rem;
             align-items: center;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
         }
         .event-card:hover {
             border-color: var(--gold);
             transform: translateY(-3px);
         }
+        /* Estilo para eventos de HOY: resplandor dorado */
+        .event-card.evento-hoy {
+            border: 2px solid #FFD700;
+            box-shadow: 0 0 20px #FFD700, 0 0 40px #FFB347;
+            animation: destello 2s infinite alternate;
+        }
+        @keyframes destello {
+            from { box-shadow: 0 0 20px #FFD700, 0 0 40px #FFB347; }
+            to { box-shadow: 0 0 30px #FFD700, 0 0 60px #FFA500; }
+        }
+
         .event-image {
             width: 120px;
             height: 120px;
@@ -569,7 +581,7 @@
         });
     }
 
-    // ========== Renderizar tarjetas ==========
+    // ========== Renderizar tarjetas con detección de eventos de hoy ==========
     function renderEventos() {
         const contenedor = document.getElementById('lista-eventos');
         if (!eventos.length) {
@@ -577,11 +589,18 @@
             return;
         }
 
+        // Obtener fecha actual en formato YYYY-MM-DD
+        const hoy = new Date().toISOString().split('T')[0];
+
         contenedor.innerHTML = '';
         eventos.forEach(evento => {
             const imagenSrc = evento.imagen || 'https://picsum.photos/400/250?random=' + evento.id;
             const card = document.createElement('div');
             card.className = 'event-card';
+            // Si la fecha del evento es hoy, añadir clase especial
+            if (evento.fecha === hoy) {
+                card.classList.add('evento-hoy');
+            }
             card.innerHTML = `
                 <img class="event-image" src="${imagenSrc}" alt="${evento.titulo}">
                 <div class="event-info">
